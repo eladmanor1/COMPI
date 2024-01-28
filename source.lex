@@ -4,9 +4,21 @@
 #include <stdio.h>
 #include "tokens.hpp"
 
+char mystring[1024];
+int index = 0;
+
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
+}
+
+int showStringToken(char* name, enum tokentype tokenType){
+    printf("%d %s %s\n",yylineno,name,yytext);
+    return tokenType;
+}
+
+void init_string(){
+    index =0;
 }
 %}
 
@@ -20,7 +32,7 @@ letter  		                    ([a-zA-Z])
 whitespace		                    ([\t\n ])
 newline			                    (["\n""\r""\n\r"])
 notnewline		                    ([^"\n""\r""\n\r"])
-xdd                                 (x[a-f0-9][a-f0-9])
+xdd                                 (x[a-fA-F0-9][a-fA-F0-9])
 
 
 %%
@@ -51,7 +63,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 "/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));
-\"                                  BEGIN(STRING_STAGE);
+\"                                  {init_string(); BEGIN(STRING_STAGE);}
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is\n");
 <STRING_STAGE>{
