@@ -21,9 +21,11 @@ int showToken(char* name, enum tokentype tokenType){
 digit   		([0-9])
 letter  		([a-zA-Z])
 whitespace		([\t\n ])
+newline			(["\n""\r""\n\r"])
+notnewline		([^"\n""\r""\n\r"])
 
 %%
-void					    return(showToken("VOID",VOID));
+void			    return(showToken("VOID",VOID));
 int                         return(showToken("INT",INT));
 byte                        return(showToken("BYTE",BYTE));
 b                           return(showToken("B",B));
@@ -45,13 +47,12 @@ continue                    return(showToken("CONTINUE",CONTINUE));
 =                           return(showToken("ASSIGN",ASSIGN));
 [!<>=]=                     return(showToken("RELOP",RELOP));
 [<>]                        return(showToken("RELOP",RELOP));
-[+\-*/]                      return(showToken("BINOP",BINOP));
+[+\-*/]                     return(showToken("BINOP",BINOP));
 
-"//"                        BEGIN(COMMENT_STAGE);
-<COMMENT_STAGE>["\r\n""\n""\r"]      BEGIN(INITIAL);
-<COMMENT_STAGE>.           printf("my name is Noa kirel");
 
-{digit}+          			return NUM;
+"/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));	    
+
+{digit}+          	    return NUM;
 {whitespace};
 .		                    printf("Lex doesn't know what that is!\n");
 
