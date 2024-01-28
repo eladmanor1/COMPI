@@ -20,6 +20,7 @@ letter  		                    ([a-zA-Z])
 whitespace		                    ([\t\n ])
 newline			                    (["\n""\r""\n\r"])
 notnewline		                    ([^"\n""\r""\n\r"])
+xdd                                 (x[a-f0-9][a-f0-9])
 
 
 %%
@@ -55,9 +56,11 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 .		                            printf("Lex doesn't know what that is\n");
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showToken("STRING", STRING));}
-"\n"			return(showToken("ERROR backslash n", STRING));
-"\r"                    return(showToken("ERROR backslsh r", STRING));
-\\                     return(showToken("ERROR backback", STRING));
-.			;
+"\n"			        {BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
+"\r"                    {BEGIN(INITIAL); return(showToken("ERROR backslsh r", STRING));}
+\\[\"nrt0]              ;
+\\{xdd}                 ;
+\\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
+.			            ;
 }
 %%
