@@ -10,7 +10,7 @@ int showToken(char* name, enum tokentype tokenType){
 }
 %}
 
-%x COMMENT_STAGE
+%x STRING_STAGE
 
 
 %option yylineno
@@ -50,8 +50,14 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 "/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));
+\"                                  BEGIN(STRING_STAGE)
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is!\n");
 
+
+
+<STRING_STAGE>["\" "\n" "\r"]      {BEGIN(INITIAL); return(showToken("ERROR", STRING))};
+<STRING_STAGE>\"                   {BEGIN(INITIAL); return(showToken("STRING", STRING));}
+<STRING_STAGE>.                     ;
 %%
 
