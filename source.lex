@@ -52,12 +52,12 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));
 \"                                  BEGIN(STRING_STAGE);
 {whitespace}                        ;
-.		                            printf("Lex doesn't know what that is!\n");
-
-
-
-<STRING_STAGE>["\" "\n" "\r"]      {BEGIN(INITIAL); return(showToken("ERROR", STRING))};
-<STRING_STAGE>\"                   {BEGIN(INITIAL); return(showToken("STRING", STRING));}
-<STRING_STAGE>.                     ;
+.		                            printf("Lex doesn't know what that is\n");
+<STRING_STAGE>{
+\"                      {BEGIN(INITIAL); return(showToken("STRING", STRING));}
+"\n"			return(showToken("ERROR backslash n", STRING));
+"\r"                    return(showToken("ERROR backslsh r", STRING));
+\\                     return(showToken("ERROR backback", STRING));
+.			;
+}
 %%
-
