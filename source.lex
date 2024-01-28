@@ -50,7 +50,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 "/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));
-\"                                  BEGIN(STRING_STAGE)
+\"                                  BEGIN(STRING_STAGE);
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is!\n");
 
