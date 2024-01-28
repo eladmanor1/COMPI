@@ -47,8 +47,8 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [<>]                                return(showToken("RELOP",RELOP));
 [+\-*/]                             return(showToken("BINOP",BINOP));
 {letter}+[{digit}{letter}]*         return(showToken("ID",ID));
-0                                   return(showToken("NUM",NUM))
-[1-9]+{digit}*                      return(showToken("NUM",NUM))
+0                                   return(showToken("NUM",NUM));
+[1-9]+{digit}*                      return(showToken("NUM",NUM));
 "/""/"({notnewline})*{newline}	    return(showToken("COMMENT", COMMENT));
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is!\n");
