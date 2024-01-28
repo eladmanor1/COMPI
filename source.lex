@@ -5,7 +5,7 @@
 #include "tokens.hpp"
 
 int showToken(char* name, enum tokentype tokenType){
-    printf("%d %s %d/n",yylineno,name,yytext);
+    printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
 }
 %}
@@ -45,16 +45,15 @@ continue                    return(showToken("CONTINUE",CONTINUE));
 =                           return(showToken("ASSIGN",ASSIGN));
 [!<>=]=                     return(showToken("RELOP",RELOP));
 [<>]                        return(showToken("RELOP",RELOP));
-[+-*/]                      return(showToken("BINOP",BINOP));
+[+\-*/]                      return(showToken("BINOP",BINOP));
 
-//                          BEGIN(COMMENT_STAGE);
-<COMMENT_STAGE> [\r\n]      {BEGIN(INITIAL); return COMMENT};
-<COMMENT_STAGE> \r\n        {BEGIN(INITIAL); return COMMENT};
-<COMMENT_STAGE> .           printf("my name is Noa kirel");
+"//"                        BEGIN(COMMENT_STAGE);
+<COMMENT_STAGE>["\r\n""\n""\r"]      BEGIN(INITIAL);
+<COMMENT_STAGE>.           printf("my name is Noa kirel");
 
 {digit}+          			return NUM;
 {whitespace};
-
 .		                    printf("Lex doesn't know what that is!\n");
 
 %%
+
