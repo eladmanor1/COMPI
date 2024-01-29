@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "tokens.hpp"
 #include <string>
+#include <stdlib>
 
 char str[1024];
 int index = 0;
@@ -18,26 +19,28 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
+    str[index]="\\"
+    index++;
     switch(yytext[1]){
         case ("n"):
-            str+="\n";
+            str[index]+="\n";
         case ("r"):
-            str+="\r";
+            str[index]="\r";
         case ("t"):
-            str+="\t";
+            str[index]="\t";
         case ("0"):
-            str+="\0";
+            str[index]="\0";
         case ("\""):
-            str+="\"";
+            str[index]="\"";
         case ("\\"):
-            str+="\\";
+            str[index]="\\";
         default:
             printf("debug - we are screwed");
 
     }
 }
 void checkIfHexaInRange(){
-    int ascVal = stoi(yylex[2],0,16);
+    int ascVal = hexToDecimal(yylex[2]);
     if(ascVal < 0x20 || ascVal > 0x7E || ascVal != 0x09 || ascVal != 0x0d || ascVal != 0x0a) {
         printf("debug - error of hexa");
         BEGIN(INITIAL);
@@ -47,9 +50,32 @@ void checkIfHexaInRange(){
 }
 
 void addHexaTostring(){
-	int ascVal = stoi(yylex[2],0,16);
+	int ascVal = hexToDecimal(yylex[2]);
 	str[index] = ascVal;
 	index++;
+}
+
+
+int hexToDecimal(char[2] hex) {
+    int result = 0;
+    for(int i=0;i<2;i++) {
+        char currentChar = *hex;
+        // Convert hex character to its decimal equivalent
+        int digit;
+        if (currentChar >= '0' && currentChar <= '9') {
+            digit = currentChar - '0';
+        } else if (currentChar >= 'a' && currentChar <= 'f') {
+            digit = 10 + currentChar - 'a';
+        } else if (currentChar >= 'A' && currentChar <= 'F') {
+            digit = 10 + currentChar - 'A';
+        } else {
+            fprintf(stderr, "Error: Invalid character in hex string: %c\n", currentChar);
+            return 0;
+        }
+        result = result * 16 + digit; // Multiply by 16 and add the new digit
+        hex++;
+    }
+    return result;
 }
 
 void resetString(){
@@ -112,6 +138,6 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {checkIfHexaInRange(); addHexaToString();}
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
-.			{str[index] =  yytext; index++;}
+.			            {str[index] =  yytext; index++;}
 }
 %%
