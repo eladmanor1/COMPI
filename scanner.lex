@@ -123,7 +123,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "("                                 return(showToken("LPAREN",LPAREN));
 ")"                                 return(showToken("RPAREN",RPAREN));
 "{"                                 return(showToken("LBRACE",LBRACE));
-"}"                                 return(showToken"RBRACE",RBRACE));
+"}"                                 return(showToken("RBRACE",RBRACE));
 =                                   return(showToken("ASSIGN",ASSIGN));
 [!<>=]=                             return(showToken("RELOP",RELOP));
 [<>]                                return(showToken("RELOP",RELOP));
