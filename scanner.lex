@@ -21,7 +21,7 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    str[index1]='\\';
+    str[index1]='\';
     index1++;
     switch(yytext[1]){
         case ('n'):
@@ -137,6 +137,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is\n");
+
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showStringToken());}
 "\n"			        {BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
