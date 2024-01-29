@@ -41,7 +41,7 @@ void addEscapeCharToString(){
     }
 }
 void checkIfHexaInRange(){
-    int ascVal = hexToDecimal(yytext[2]);
+    int ascVal = hexToDecimal(&yytext[2]);
     if(ascVal < 0x20 || ascVal > 0x7E || ascVal != 0x09 || ascVal != 0x0d || ascVal != 0x0a) {
         printf("debug - error of hexa");
         BEGIN(INITIAL);
@@ -51,7 +51,7 @@ void checkIfHexaInRange(){
 }
 
 void addHexaTostring(){
-	int ascVal = hexToDecimal(yytext[2]);
+	int ascVal = hexToDecimal(&yytext[2]);
 	str[index1] = ascVal;
 	index1++;
 }
