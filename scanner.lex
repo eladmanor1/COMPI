@@ -143,8 +143,9 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\x{dd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("rule 1Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
 \\x[^{whitepsace}\"][^{whitepsace}\"]                    {BEGIN(INITIAL); printf("rule 2Error undefined escape sequence %s\n", yytext + 1); exit(0);}
 \\x[^{whitepsace}\"]                    {BEGIN(INITIAL); printf("rule 3Error undefined escape sequence %s\n", yytext + 1); exit(0);}
-\\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\[^\"nrt0\\{whitespace}]           {BEGIN(INITIAL); printf("rule 4Error undefined escape sequence %c\n", yytext[1]); exit(0);}
+\\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
+
 .			            {str[index1] =  *yytext; index1++;}
 }
 %%
