@@ -3,9 +3,9 @@
 /* Declarations section */
 #include <stdio.h>
 #include "tokens.hpp"
+#include <string.h>
 
-char mystring[1024];
-int index = 0;
+string str = "";
 
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
@@ -17,9 +17,6 @@ int showStringToken(char* name, enum tokentype tokenType){
     return tokenType;
 }
 
-void init_string(){
-    index =0;
-}
 %}
 
 %x STRING_STAGE
@@ -68,11 +65,11 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 .		                            printf("Lex doesn't know what that is\n");
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showToken("STRING", STRING));}
-"\n"			        {BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
+"\n"			{BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
 "\r"                    {BEGIN(INITIAL); return(showToken("ERROR backslsh r", STRING));}
-\\[\"nrt0]              ;
-\\{xdd}                 ;
+\\[\"nrt0]              addEscapeCharToString();
+\\{xdd}                 addHexaToString();
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
-.			            ;
+.			str =+ yytext;            ;
 }
 %%
