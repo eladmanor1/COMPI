@@ -134,7 +134,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
 {whitespace}                        ;
-.		                            {printf("ERROR %s in line %d\n",yytext, yylineno); exit(0);}
+.		                            {printf("ERROR in line %d. The string is %s\n" yylineno,yytext); exit(0);}
 
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showStringToken());}
