@@ -129,7 +129,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [<>]                                return(showToken("RELOP",RELOP));
 [+\-*/]                             return(showToken("BINOP",BINOP));
 "/""/"({notnewline})*	    {printf("%d %s %s\n",yylineno,"COMMENT","//"); return COMMENT;}
-{letter}+[{digit}{letter}]*         return(showToken("ID",ID));
+{letter}+[0-9a-zA-Z]*         return(showToken("ID",ID));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
