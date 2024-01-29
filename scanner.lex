@@ -141,7 +141,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\['\"''n''r''t''0''\\']            addEscapeCharToString();
 \\x{dd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
-\\x[^'\t''\n''\r''"'][^'\\t''\\n''\\r''\"']                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
+\\x[^'\t''\n''\r''"'][^'\t''\n''\r''\"']                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
 \\x[^'\t''\n''\r''"']                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
 \\[^'\"'nrt0'\\''\t''\n''\r']           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
 \\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
