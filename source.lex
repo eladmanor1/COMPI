@@ -10,13 +10,17 @@ string str = "";
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
-}
+}v
 
 int showStringToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
 }
 
+void addHexaTostring(){
+	int ascVal = stoi(yylex[2],0,16);
+	str =+ ascVal;
+}
 %}
 
 %x STRING_STAGE
