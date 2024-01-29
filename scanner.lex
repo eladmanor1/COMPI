@@ -142,7 +142,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); return(showToken("ERROR in hex value", STRING));}}
 \\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
-\\[^\"nrt0\\{whitespace}]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext);}
+\\[^\"nrt0\\{whitespace}]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
 .			            {str[index1] =  *yytext; index1++;}
 }
 %%
