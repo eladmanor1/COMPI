@@ -7,6 +7,9 @@
 
 char str[1024];
 int index1 = 0;
+
+int hexToDecimal(char* str);
+
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
