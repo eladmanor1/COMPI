@@ -3,10 +3,10 @@
 /* Declarations section */
 #include <stdio.h>
 #include "tokens.hpp"
-#include <string.h>
+#include <string>
 
-string str = "";
-
+char str[1024];
+int index = 0;
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
@@ -48,8 +48,15 @@ void checkIfHexaInRange(){
 
 void addHexaTostring(){
 	int ascVal = stoi(yylex[2],0,16);
-	str =+ ascVal;
+	str[index] = ascVal;
+	index++;
 }
+
+void resetString(){
+	for(int i= 0; i <1024; i++){
+	str[i] = "\0";
+	}
+	index = x;
 %}
 
 %x STRING_STAGE
@@ -95,7 +102,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 {letter}+[{digit}{letter}]*         return(showToken("ID",ID));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
-\"                                  {BEGIN(STRING_STAGE); str ="";}
+\"                                  {BEGIN(STRING_STAGE); resetString();}
 {whitespace}                        ;
 .		                            printf("Lex doesn't know what that is\n");
 <STRING_STAGE>{
@@ -105,6 +112,6 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {checkIfHexaInRange(); addHexaToString();}
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
-.			            str =+ yytext;
+.			{str[index] =  yytext; index++;}
 }
 %%
