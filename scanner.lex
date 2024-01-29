@@ -20,6 +20,9 @@ int showStringToken(){
     int j=0;
     printf("%d %s ",yylineno,"STRING");
     for (int i = 0; i < index1; ++i){
+        if(str[i] == '\0'){
+            continue;
+        }
         printf("%c",str[i]);
     }
     printf("\n");
