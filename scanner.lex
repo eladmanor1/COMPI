@@ -99,6 +99,7 @@ whitespace		                    ([\t\n ])
 newline			                    (["\n""\r""\n\r"])
 notnewline		                    ([^"\n""\r""\n\r"])
 xdd                                 (x[a-fA-F0-9][a-fA-F0-9])
+xd                                  (x[a-fA-F0-9])
 
 
 %%
@@ -140,7 +141,8 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "\n"			        {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 "\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\[\"nrt0\\]            addEscapeCharToString();
-\\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); return(showToken("ERROR in hex value", STRING));}}
+\\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
+\\x.                    {BEGIN(INITIAL); printf("Error undefined escape sequence x%c\n", yytext[2]); exit(0);}
 \\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\[^\"nrt0\\{whitespace}]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
 .			            {str[index1] =  *yytext; index1++;}
