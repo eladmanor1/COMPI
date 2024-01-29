@@ -43,7 +43,6 @@ bool checkIfHexaInRange(int ascVal){
     if((ascVal >= 0x20 && ascVal <= 0x7E) || (ascVal == 0x09) || (ascVal == 0x0d) || (ascVal == 0x0a)) {
         return true;
     }
-    printf("debug - error of hexa");
     return false;
 }
 
