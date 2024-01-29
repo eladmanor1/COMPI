@@ -40,19 +40,23 @@ void addEscapeCharToString(){
             printf("debug - we are screwed");
     }
 }
-void checkIfHexaInRange(){
-    int ascVal = hexToDecimal(&yytext[2]);
+bool checkIfHexaInRange(int ascVal){
+    //int ascVal = hexToDecimal(&yytext[2]);
     if(ascVal < 0x20 || ascVal > 0x7E || ascVal != 0x09 || ascVal != 0x0d || ascVal != 0x0a) {
         printf("debug - error of hexa");
-        BEGIN(INITIAL);
-        return;
+        //BEGIN(INITIAL);
+        return false;
     }
+    return true;
 }
 
-void addHexaToString(){
+bool addHexaToString(){
 	int ascVal = hexToDecimal(&yytext[2]);
+    if(!checkIfHexaInRange(ascVal))
+        return false;
 	str[index1] = ascVal;
 	index1++;
+    return true;
 }
 
 
@@ -138,7 +142,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "\n"			        {BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
 "\r"                    {BEGIN(INITIAL); return(showToken("ERROR backslsh r", STRING));}
 \\[\"nrt0\\]            addEscapeCharToString();
-\\{xdd}                 {checkIfHexaInRange(); addHexaToString();}
+\\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); return(showToken("ERROR in hex value", STRING));}}
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
 .			            {str[index1] =  *yytext; index1++;}
 }
