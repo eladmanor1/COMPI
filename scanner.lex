@@ -3,8 +3,7 @@
 /* Declarations section */
 #include <stdio.h>
 #include "tokens.hpp"
-#include <string>
-#include <cstdlib>
+#include <stdlib.h>
 
 char str[1024];
 int index = 0;
