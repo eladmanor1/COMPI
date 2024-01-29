@@ -26,17 +26,17 @@ void addEscapeCharToString(){
     printf("yytext[1]: %c",yytext[1]);
     switch(yytext[1]){
         case ('n'):
-            str[index1]='\n';
+            str[index1]='\n'; break;
         case ('r'):
-            str[index1]='\r';
+            str[index1]='\r';break;
         case ('t'):
-            str[index1]='\t';
+            str[index1]='\t';break;
         case ('0'):
-            str[index1]='\0';
+            str[index1]='\0';break;
         case ('\"'):
-            str[index1]='\"';
+            str[index1]='\"';break;
         case ('\\'):
-            str[index1]='\\';
+            str[index1]='\\';break;
         default:
             printf("debug - we are screwed");
     }
