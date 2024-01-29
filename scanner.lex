@@ -18,21 +18,21 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    str[index1]="\\"
+    str[index1]='\\'
     index1++;
     switch(yytext[1]){
         case ('n'):
-            str[index1]="\n";
+            str[index1]='\n';
         case ('r'):
-            str[index1]="\r";
+            str[index1]='\r';
         case ('t'):
-            str[index1]="\t";
+            str[index1]='\t';
         case ('0'):
-            str[index1]="\0";
+            str[index1]='\0';
         case ('\"'):
-            str[index1]="\"";
+            str[index1]='\"';
         case ('\\'):
-            str[index1]="\\";
+            str[index1]='\\';
         default:
             printf("debug - we are screwed");
     }
