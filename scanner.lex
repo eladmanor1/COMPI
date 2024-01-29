@@ -133,15 +133,15 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
 {whitespace}                        ;
-.		                            printf("ERROR %s\n",yytext);
+.		                            {printf("ERROR %s\n",yytext); exit(0);
 
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showStringToken());}
-"\n"			        {BEGIN(INITIAL); return(showToken("ERROR backslash n", STRING));}
-"\r"                    {BEGIN(INITIAL); return(showToken("ERROR backslsh r", STRING));}
+"\n"			        {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
+"\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); return(showToken("ERROR in hex value", STRING));}}
-\\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
+\\[^\"nrt0\\]           {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext[1]);}
 .			            {str[index1] =  *yytext; index1++;}
 }
 %%
