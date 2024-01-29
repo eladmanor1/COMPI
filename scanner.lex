@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 char str[1024];
-int index = 0;
+int index1 = 0;
 int showToken(char* name, enum tokentype tokenType){
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
@@ -18,21 +18,21 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    str[index]="\\"
-    index++;
+    str[index1]="\\"
+    index1++;
     switch(yytext[1]){
         case ('n'):
-            str[index]+="\n";
+            str[index1]+="\n";
         case ('r'):
-            str[index]="\r";
+            str[index1]="\r";
         case ('t'):
-            str[index]="\t";
+            str[index1]="\t";
         case ('0'):
-            str[index]="\0";
+            str[index1]="\0";
         case ('\"'):
-            str[index]="\"";
+            str[index1]="\"";
         case ('\\'):
-            str[index]="\\";
+            str[index1]="\\";
         default:
             printf("debug - we are screwed");
     }
@@ -49,8 +49,8 @@ void checkIfHexaInRange(){
 
 void addHexaTostring(){
 	int ascVal = hexToDecimal(yylex[2]);
-	str[index] = ascVal;
-	index++;
+	str[index1] = ascVal;
+	index1++;
 }
 
 
@@ -80,7 +80,7 @@ void resetString() {
     for (int i = 0; i < 1024; i++) {
         str[i] = "\0";
     }
-    index = 0;
+    index1 = 0;
 }
 
 %}
@@ -138,6 +138,6 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {checkIfHexaInRange(); addHexaToString();}
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
-.			            {str[index] =  yytext; index++;}
+.			            {str[index1] =  yytext; index1++;}
 }
 %%
