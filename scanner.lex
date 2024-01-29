@@ -18,7 +18,11 @@ int showToken(const char* name, enum tokentype tokenType){
 
 int showStringToken(){
     int j=0;
-    printf("%d %s %s\n",yylineno,"STRING",str);
+    printf("%d %s ",yylineno,"STRING");
+    for (int i = 0; i < index1; ++i){
+        printf("%c",str[i]);
+    }
+    printf("\n");
     return STRING;
 }
 
