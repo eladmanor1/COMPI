@@ -141,8 +141,8 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {if(!addHexaToString()){BEGIN(INITIAL); return(showToken("ERROR in hex value", STRING));}}
-\\[^\"nrt0\\]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext);}
-\\                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
+\\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
+\\[^\"nrt0\\{whitespace}]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext);}
 .			            {str[index1] =  *yytext; index1++;}
 }
 %%
