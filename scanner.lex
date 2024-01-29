@@ -57,7 +57,7 @@ void addHexaTostring(){
 }
 
 
-int hexToDecimal(char[2] hex) {
+int hexToDecimal(char hex[2]) {
     int result = 0;
     for(int i=0;i<2;i++) {
         char currentChar = *hex;
