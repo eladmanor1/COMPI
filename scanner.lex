@@ -22,8 +22,6 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    //str[index1]='\\';
-    //index1++;
     switch(yytext[1]){
         case ('n'):
             str[index1]='\n'; index1++;break;
@@ -42,13 +40,11 @@ void addEscapeCharToString(){
     }
 }
 bool checkIfHexaInRange(int ascVal){
-    //int ascVal = hexToDecimal(&yytext[2]);
-    if(ascVal < 0x20 || ascVal > 0x7E || ascVal != 0x09 || ascVal != 0x0d || ascVal != 0x0a) {
-        printf("debug - error of hexa");
-        //BEGIN(INITIAL);
-        return false;
+    if((ascVal >= 0x20 && ascVal <= 0x7E) || (ascVal == 0x09) || (ascVal == 0x0d) || (ascVal == 0x0a)) {
+        return true;
     }
-    return true;
+    printf("debug - error of hexa");
+    return false;
 }
 
 bool addHexaToString(){
