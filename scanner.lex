@@ -17,7 +17,7 @@ int showToken(const char* name, enum tokentype tokenType){
 }
 
 int showStringToken(){
-    printf("%d %s %s",yylineno,"STRING", yytext);
+    printf("%d %s %s\n",yylineno,"STRING", yytext);
 //    printf("%d %s ",yylineno,"STRING");
 ////    for (int i = 0; i < index1; ++i){
 ////        if(str[i] == '\0'){
