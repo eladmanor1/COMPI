@@ -17,7 +17,7 @@ int showToken(char* name, enum tokentype tokenType){
 
 int showStringToken(){
     int j=0;
-    printf("printing explicitly!:")
+    printf("printing explicitly!:");
     while (j < index) {
         putchar(str[j]);
         j++;
