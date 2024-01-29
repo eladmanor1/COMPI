@@ -133,7 +133,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
 {whitespace}                        ;
-.		                            printf("ERROR ֵֵֵ%s\n",yytext);
+.		                            printf("ERROR ֵֵֵ%c\n",yytext);
 
 <STRING_STAGE>{
 \"                      {BEGIN(INITIAL); return(showStringToken());}
