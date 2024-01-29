@@ -27,23 +27,22 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    str[index1]='\\';
-    index1++;
+    //str[index1]='\\';
+    //index1++;
     printf("yytext[1]:%c",yytext[1]);
     switch(yytext[1]){
         case ('n'):
-            printf("in case n");
-            str[index1]='n'; break;
+            str[index1]='\n'; index1++;break;
         case ('r'):
-            str[index1]='r';break;
+            str[index1]='\r';index1++;break;
         case ('t'):
-            str[index1]='t';break;
+            str[index1]='\t';index1++;break;
         case ('0'):
-            str[index1]='0';break;
+            str[index1]='\0';index1++;break;
         case ('\"'):
-            str[index1]='\"';break;
+            str[index1]='\"';index1++;break;
         case ('\\'):
-            str[index1]='\\';break;
+            str[index1]='\\';index1++;break;
         default:
             printf("debug - we are screwed");
     }
