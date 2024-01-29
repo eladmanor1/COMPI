@@ -49,7 +49,7 @@ void checkIfHexaInRange(){
     }
 }
 
-void addHexaTostring(){
+void addHexaToString(){
 	int ascVal = hexToDecimal(&yytext[2]);
 	str[index1] = ascVal;
 	index1++;
