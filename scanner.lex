@@ -17,19 +17,13 @@ int showToken(char* name, enum tokentype tokenType){
 
 int showStringToken(){
     int j=0;
-    printf("printing explicitly!:");
-    while (j < index1) {
-        putchar(str[j]);
-        j++;
-    }
-    //printf("%d %s %s\n",yylineno,"STRING",str);
+    printf("%d %s %s\n",yylineno,"STRING",str);
     return STRING;
 }
 
 void addEscapeCharToString(){
     //str[index1]='\\';
     //index1++;
-    printf("yytext[1]:%c",yytext[1]);
     switch(yytext[1]){
         case ('n'):
             str[index1]='\n'; index1++;break;
