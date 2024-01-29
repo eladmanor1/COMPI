@@ -22,7 +22,7 @@ void addEscapeCharToString(){
     index1++;
     switch(yytext[1]){
         case ('n'):
-            str[index1]+="\n";
+            str[index1]="\n";
         case ('r'):
             str[index1]="\r";
         case ('t'):
