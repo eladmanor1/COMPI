@@ -102,7 +102,7 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-void			                    return(showToken("VOID",VOID));
+void			                    return(showToken('VOID',VOID));
 int                                 return(showToken("INT",INT));
 byte                                return(showToken("BYTE",BYTE));
 b                                   return(showToken("B",B));
