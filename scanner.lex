@@ -47,7 +47,6 @@ void checkIfHexaInRange(){
         BEGIN(INITIAL);
         return;
     }
-
 }
 
 void addHexaTostring(){
@@ -81,7 +80,7 @@ int hexToDecimal(char hex[2]) {
 
 void resetString() {
     for (int i = 0; i < 1024; i++) {
-        str[i] = "\0";
+        str[i] = '\0';
     }
     index1 = 0;
 }
