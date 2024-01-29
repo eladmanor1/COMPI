@@ -21,8 +21,9 @@ int showStringToken(){
 }
 
 void addEscapeCharToString(){
-    str[index1]='\';
+    str[index1]='\\';
     index1++;
+    printf("yytext[1]: %c",yytext[1]);
     switch(yytext[1]){
         case ('n'):
             str[index1]='\n';
