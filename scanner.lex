@@ -32,7 +32,7 @@ void addEscapeCharToString(){
     printf("yytext[1]:%c",yytext[1]);
     switch(yytext[1]){
         case ('n'):
-            "in case n"
+            printf("in case n");
             str[index1]='n'; break;
         case ('r'):
             str[index1]='r';break;
