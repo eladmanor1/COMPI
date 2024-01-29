@@ -9,42 +9,9 @@ char str[1024];
 int index1 = 0;
 
 int hexToDecimal(char* str);
-//
-//char* convertTokenTypeToString(tokentype tokenType){
-//    switch (tokenType){
-//        case VOID:
-//            return "VOID";
-//
-////            "VOID,VOID));
-////            int                                 return(showToken('INT",INT));
-////            byte                                return(showToken('BYTE",BYTE));
-////            b                                   return(showToken('B",B));
-////            bool                                return(showToken('BOOL",BOOL));
-////                                                                 and                                 return(showToken('AND",AND));
-////                                                                                                                      or                                  return(showToken('OR",OR));
-////            not                                 return(showToken('NOT",NOT));
-////            true                                return(showToken('TRUE",TRUE));
-////            false                               return(showToken('FALSE",FALSE));
-////            return                              return(showToken('RETURN",RETURN));
-////            if                                  return(showToken('IF",IF));
-////            else                                return(showToken('ELSE",ELSE));
-////            while                               return(showToken('WHILE",WHILE));
-////            break                               return(showToken('BREAK",BREAK));
-////            continue                            return(showToken('CONTINUE",CONTINUE));
-////            ;                                   return(showToken('SC",SC));
-////            "("                                 return(showToken('LPAREN",LPAREN));
-////            ")"                                 return(showToken('RPAREN",RPAREN));
-////            "{"                                 return(showToken('LBRACE",LBRACE));
-////            "}"                                 return(showToken('RBRACE",RBRACE));
-////                                                                         =                                   return(showToken('ASSIGN",ASSIGN));
-////                                                                                                                              [!<>=]=                             return(showToken("RELOP",RELOP));
-////            [<>]                                return(showToken("RELOP",RELOP));
-////            [+\-*/]                             return(showToken("BINOP",BINOP))
-//    }
-//}
+
 
 int showToken(const char* name, enum tokentype tokenType){
-    char* tokenName = convertTokenTypeToString(tokenType);
     printf("%d %s %s\n",yylineno,name,yytext);
     return tokenType;
 }
