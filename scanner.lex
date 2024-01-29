@@ -140,6 +140,6 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[\"nrt0\\]            addEscapeCharToString();
 \\{xdd}                 {checkIfHexaInRange(); addHexaToString();}
 \\                      {BEGIN(INITIAL); return(showToken("ERROR backslsh ", STRING));}
-.			            {str[index1] =  yytext; index1++;}
+.			            {str[index1] =  yytext*; index1++;}
 }
 %%
