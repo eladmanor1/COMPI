@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "tokens.hpp"
 #include <string>
-#include <stdlib>
+#include <cstdlib>
 
 char str[1024];
 int index = 0;
@@ -22,21 +22,20 @@ void addEscapeCharToString(){
     str[index]="\\"
     index++;
     switch(yytext[1]){
-        case ("n"):
+        case ('n'):
             str[index]+="\n";
-        case ("r"):
+        case ('r'):
             str[index]="\r";
-        case ("t"):
+        case ('t'):
             str[index]="\t";
-        case ("0"):
+        case ('0'):
             str[index]="\0";
-        case ("\""):
+        case ('\"'):
             str[index]="\"";
-        case ("\\"):
+        case ('\\'):
             str[index]="\\";
         default:
             printf("debug - we are screwed");
-
     }
 }
 void checkIfHexaInRange(){
@@ -78,11 +77,13 @@ int hexToDecimal(char[2] hex) {
     return result;
 }
 
-void resetString(){
-	for(int i= 0; i <1024; i++){
-	str[i] = "\0";
-	}
-	index = x;
+void resetString() {
+    for (int i = 0; i < 1024; i++) {
+        str[i] = "\0";
+    }
+    index = 0;
+}
+
 %}
 
 %x STRING_STAGE
