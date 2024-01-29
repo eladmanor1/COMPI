@@ -16,6 +16,12 @@ int showToken(char* name, enum tokentype tokenType){
 }
 
 int showStringToken(){
+    str1= str;
+    printf("printing explicitly!:")
+    while (*str1 != '\0') {
+        putchar(*str1);
+        str1++;
+    }
     printf("%d %s %s\n",yylineno,"STRING",str);
     return STRING;
 }
