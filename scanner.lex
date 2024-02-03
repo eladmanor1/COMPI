@@ -136,8 +136,8 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [!<>=]=                             return(showToken("RELOP",RELOP));
 [<>]                                return(showToken("RELOP",RELOP));
 [+\-*/]                             return(showToken("BINOP",BINOP));
-"/""/"([\r\n\n\r])*	    {printf("%d %s %s\n",yylineno,"COMMENT","//"); return COMMENT;}
-{letter}+[0-9a-zA-Z]*         return(showToken("ID",ID));
+"/""/"([^\r\n\n\r])*                {printf("%d %s %s\n",yylineno,"COMMENT","//"); return COMMENT;}
+{letter}+[0-9a-zA-Z]*               return(showToken("ID",ID));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
 \"                                  {BEGIN(STRING_STAGE); resetString();}
