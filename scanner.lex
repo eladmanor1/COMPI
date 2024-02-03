@@ -86,7 +86,7 @@ void resetString() {
 }
 
 void charInString(){
-    if(*yytext >= 0x20 && *yytext <= 0x7E){
+    if((*yytext >= 0x20 && *yytext <= 0x7E) || *yytext == '\t'){
         str[index1] =  *yytext; index1++;
     }
     else {
