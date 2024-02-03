@@ -149,10 +149,10 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 "\n"			        {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 "\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 \\['\"''n''r''t''0''\\']            addEscapeCharToString();
-\\x{dd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
-\\x[^'\t''\n''\r''"'][^'\t''\n''\r''\"']                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
-\\x[^'\t''\n''\r''"']                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
-\\[^'\"'nrt0'\\''\t''\n''\r']           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
+\\x{dd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("rule 1Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
+\\x[^'\t''\n''\r''"'][^'\t''\n''\r''\"']                    {BEGIN(INITIAL); printf("rule 2Error undefined escape sequence %s\n", yytext + 1); exit(0);}
+\\x[^'\t''\n''\r''"']                    {BEGIN(INITIAL); printf("rule 3Error undefined escape sequence %s\n", yytext + 1); exit(0);}
+\\[^'\"'nrt0'\\''\t''\n''\r']           {BEGIN(INITIAL); printf("rule 4Error undefined escape sequence %c\n", yytext[1]); exit(0);}
 \\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 .			            charInString();
 }
