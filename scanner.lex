@@ -85,6 +85,15 @@ void resetString() {
     index1 = 0;
 }
 
+void charInString(){
+    if(yytext >= 0x20 && yytext <= 0x7E){
+        str[index1] =  *yytext; index1++;
+    }
+    else {
+        printf("Error %s\n",yytext); exit(0);
+    }
+}
+
 %}
 
 %x STRING_STAGE
@@ -146,5 +155,5 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 \\[^'\"'nrt0'\\''\t''\n''\r']           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
 \\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
 
-.			            {if(yytext >= 0x20 || yytext <= 0x7E) {str[index1] =  *yytext; index1++;} else { printf("Error %s\n",yytext); exit(0);}}
+.			            charInString();
 %%
