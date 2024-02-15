@@ -120,7 +120,7 @@ and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
 true                                return TRUE;
-false                               return FALSE:
+false                               return FALSE;
 return                              return RETURN;
 if                                  return IF;
 else                                return ELSE;
