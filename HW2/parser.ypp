@@ -22,12 +22,19 @@ using namespace std;
 
 %token VOID INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING
 
-%token RBRACE
-%token LBRACE
+
 %token ID
 %token SC
 %token RETURN
 
+
+%left OR
+%left AND
+%left RELOP
+%left ADD_SUB
+%right NOT
+%left LPAREN RPAREN LBRACE RBRACE
+%right ELSE
 
 
 
