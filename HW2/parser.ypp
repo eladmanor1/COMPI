@@ -73,7 +73,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
-//                | NUM                                               {printProductionRule(23);}
+                | NUM                                               {printProductionRule(23);}
 //                | NUM B                                             {printProductionRule(24);}
                 | STRING                                            {printProductionRule(25);}
                 | TRUE                                              {printProductionRule(26);}
