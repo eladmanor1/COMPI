@@ -139,7 +139,7 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 {letter}+[0-9a-zA-Z]*               return(showToken("ID",ID));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
-\"([^\n\r\"\\]|\\[rnt"\\])+\"       return(showToken("STRING", STRING);
+\"([^\n\r\"\\]|\\[rnt"\\])+\"       return(showToken("STRING", STRING));
 {whitespace}                        ;
 .		                            {printf("Error %s\n",yytext); exit(0);}
 
