@@ -1,29 +1,18 @@
 %{
 	#include <iostream>
-	#include <stdlib.h>
-#include "output.hpp"
+    #include <stdlib.h>
+    #include "output.hpp"
 //    #define YYERROR_VERBOSE 1
 //#define YYDEBUG 1
 
-using namespace std;
-using namespace output;
+    using namespace std;
+    using namespace output;
     #define YYSTYPE int
 	extern int yylex();
 	int yyerror(const char * message);
 %}
 
-
-
-//garbage
-//%token tklp tkrp
-//%token<constVal> tkconst
-//%left tkor
-//%left tkand
-
-
 %token INT BYTE BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
-
-
 
 %token ID
 %token SC
@@ -32,12 +21,10 @@ using namespace output;
 %nonassoc NUM
 %nonassoc B
 
-
 %left OR
 %left AND
 %left EQUALITY
 %left RELATION
-
 
 %left ADD_SUB
 %left MUL_DIV
@@ -47,15 +34,7 @@ using namespace output;
 %right ELSE
 
 
-//%type<exp> Exp
-
 %%
-//example
-//S	:	Exp
-//		{
-//			cout<<"The expression's value is "<<$1.value<<endl;
-//		}
-//	;
 
 Program:        Statements                                          {printProductionRule(1);};
 Statements:     Statement                                           {printProductionRule(2);}
@@ -93,13 +72,6 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
 
 
-
-
-//Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
-//	|	Exp tkor Exp { $$.value = $1.value || $3.value; }
-//	|	tklp Exp tkrp { $$ = $2; }
-//	|	tkconst	{ $$.value = $1; }
-//	;
 
 %%
 
