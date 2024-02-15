@@ -19,9 +19,11 @@ using namespace std;
 //%left tkor
 //%left tkand
 
+
+%token VOID INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING
+
 %token RBRACE
 %token LBRACE
-%token Type
 %token ID
 %token SC
 %token RETURN
