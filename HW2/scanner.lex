@@ -121,7 +121,7 @@ or                                  return(showToken("OR",OR));
 not                                 return(showToken("NOT",NOT));
 true                                return(showToken("TRUE",TRUE));
 false                               return(showToken("FALSE",FALSE));
-return                              {printf("REUTRNNNN\n"); return RETURN);}
+return                              return RETURN;
 if                                  return(showToken("IF",IF));
 else                                return(showToken("ELSE",ELSE));
 while                               return(showToken("WHILE",WHILE));
