@@ -47,11 +47,11 @@ using namespace std;
 //		}
 //	;
 
-Program:        Statements   {printProductRule(1);};
-Statements:     Statement {printProductRule(2);}
-                | Statements Statement {printProductRule(3);};
-Statement:      LBRACE Statements RBRACE {printProductRule(4);}
-                | RETURN SC {printProductRule(5);};
+Program:        Statements   {printProductionRule(1);};
+Statements:     Statement {printProductionRule(2);}
+                | Statements Statement {printProductionRule(3);};
+Statement:      LBRACE Statements RBRACE {printProductionRule(4);}
+                | RETURN SC {printProductionRule(5);};
 
 
 //Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
