@@ -136,25 +136,12 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 [!<>=]=                             return(showToken("RELOP",RELOP));
 [<>]                                return(showToken("RELOP",RELOP));
 [+\-*/]                             return(showToken("BINOP",BINOP));
-"/""/"([^\r\n\n\r])*                {printf("%d %s %s\n",yylineno,"COMMENT","//"); return COMMENT;}
 {letter}+[0-9a-zA-Z]*               return(showToken("ID",ID));
 0                                   return(showToken("NUM",NUM));
 [1-9]+{digit}*                      return(showToken("NUM",NUM));
-\"                                  {BEGIN(STRING_STAGE); resetString();}
+\"([^\n\r\"\\]|\\[rnt"\\])+\"       return(showToken("STRING", STRING);
 {whitespace}                        ;
 .		                            {printf("Error %s\n",yytext); exit(0);}
 
-<STRING_STAGE>{
-\"                      {BEGIN(INITIAL); return(showStringToken());}
-"\n"			        {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
-"\r"                    {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
-\\[\"nrt0\\]            addEscapeCharToString();
-\\x{dd}                 {if(!addHexaToString()){BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}}
-\\x[^\t\n\r\"][^\t\n\r\"]                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
-\\x[^\t\n\r\"]                    {BEGIN(INITIAL); printf("Error undefined escape sequence %s\n", yytext + 1); exit(0);}
-\\[^\"nrt0\\\t\n\r]           {BEGIN(INITIAL); printf("Error undefined escape sequence %c\n", yytext[1]); exit(0);}
-\\{whitespace}                      {BEGIN(INITIAL); printf("Error unclosed string\n"); exit(0);}
-.			            charInString();
-}
 
 %%
