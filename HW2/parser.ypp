@@ -33,7 +33,7 @@ using namespace output;
 %token AND
 %token RELOP
 %token NOT
-%token LPAREN RPAREN LBRACE RBRACE
+%left LPAREN RPAREN LBRACE RBRACE
 %right ELSE
 
 
