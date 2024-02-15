@@ -41,8 +41,8 @@ using namespace std;
 Program:    Statements;
 Statements:    Statement;
 Statements:   Statements Statement;
-Statement: "LBRACE" Statements "RBRACE" {printf("Noa kirrel\n");};
-Statement: "RETURN" "SC";
+Statement: LBRACE Statements RBRACE {printf("Noa kirrel\n");};
+Statement: RETURN SC;
 
 
 //Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
