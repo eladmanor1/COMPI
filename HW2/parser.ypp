@@ -21,7 +21,7 @@ using namespace output;
 //%left tkand
 
 
-%token INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING BINOP ASSIGN
+%token INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING ASSIGN
 
 
 %token ID
@@ -33,6 +33,9 @@ using namespace output;
 %token AND
 %token RELOP
 %token NOT
+
+%left ADD_SUB
+%left MUL_DIV
 %nonassoc LPAREN RPAREN LBRACE RBRACE
 %right ELSE
 
@@ -66,7 +69,8 @@ Type:           INT                                                 {printProduc
                 | BYTE                                              {printProductionRule(17);}
                 | BOOL                                              {printProductionRule(18);};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
-                | Exp BINOP Exp                                     {printProductionRule(20);}
+                | Exp ADD_SUB Exp                                   {printProductionRule(20);}
+                | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
 //                | NUM                                               {printProductionRule(23);}
