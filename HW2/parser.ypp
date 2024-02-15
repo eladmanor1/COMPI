@@ -21,12 +21,15 @@ using namespace output;
 //%left tkand
 
 
-%token INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING ASSIGN
+%token INT BYTE BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
 
 
 %token ID
 %token SC
 %token RETURN
+
+%nonassoc NUM
+%nonassoc B
 
 
 %token OR
@@ -74,7 +77,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
                 | NUM                                               {printProductionRule(23);}
-//                | NUM B                                             {printProductionRule(24);}
+                | NUM B                                             {printProductionRule(24);}
                 | STRING                                            {printProductionRule(25);}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);};
