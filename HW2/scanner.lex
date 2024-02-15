@@ -111,35 +111,35 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-void			                    return(showToken("VOID",VOID));
-int                                 return(showToken("INT",INT));
-byte                                return(showToken("BYTE",BYTE));
-b                                   return(showToken("B",B));
-bool                                return(showToken("BOOL",BOOL));
-and                                 return(showToken("AND",AND));
-or                                  return(showToken("OR",OR));
-not                                 return(showToken("NOT",NOT));
-true                                return(showToken("TRUE",TRUE));
-false                               return(showToken("FALSE",FALSE));
+void			                    return VOID
+int                                 return INT
+byte                                return BYTE;
+b                                   return B;
+bool                                return BOOL;
+and                                 return AND;
+or                                  return OR;
+not                                 return NOT;
+true                                return TRUE;
+false                               return FALSE:
 return                              return RETURN;
-if                                  return(showToken("IF",IF));
-else                                return(showToken("ELSE",ELSE));
-while                               return(showToken("WHILE",WHILE));
-break                               return(showToken("BREAK",BREAK));
-continue                            return(showToken("CONTINUE",CONTINUE));
-;                                   return(showToken("SC",SC));
-"("                                 return(showToken("LPAREN",LPAREN));
-")"                                 return(showToken("RPAREN",RPAREN));
-"{"                                 {printf("Elad homo, {\n"); return LBRACE);}
-"}"                                 {printf("Elad homo, {\n"); return RBRACE);}
-=                                   return(showToken("ASSIGN",ASSIGN));
-[!<>=]=                             return(showToken("RELOP",RELOP));
-[<>]                                return(showToken("RELOP",RELOP));
-[+\-*/]                             return(showToken("BINOP",BINOP));
-{letter}+[0-9a-zA-Z]*               return(showToken("ID",ID));
-0                                   return(showToken("NUM",NUM));
-[1-9]+{digit}*                      return(showToken("NUM",NUM));
-\"([^\n\r\"\\]|\\[rnt"\\])+\"       return(showToken("STRING", STRING));
+if                                  return IF;
+else                                return ELSE;
+while                               return WHILE;
+break                               return BREAK;
+continue                            return CONTINUE;
+;                                   return SC;
+"("                                 return LPAREN;
+")"                                 return RPAREN;
+"{"                                 return LBRACE;
+"}"                                 return RBRACE;
+=                                   return ASSIGN;
+[!<>=]=                             return RELOP;
+[<>]                                return RELOP;
+[+\-*/]                             return BINOP;
+{letter}+[0-9a-zA-Z]*               return ID;
+0                                   return NUM;
+[1-9]+{digit}*                      return NUM;
+\"([^\n\r\"\\]|\\[rnt"\\])+\"       return STRING;
 {whitespace}                        ;
 .		                            {printf("Error %s\n",yytext); exit(0);}
 
