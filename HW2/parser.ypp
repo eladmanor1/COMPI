@@ -1,8 +1,10 @@
 %{
 	#include <iostream>
 	#include <stdlib.h>
+    #define YYERROR_VERBOSE 1
+#define YYDEBUG 1
 
-	using namespace std;
+using namespace std;
     #define YYSTYPE int
 	extern int yylex();
 	int yyerror(const char * message);
@@ -53,6 +55,7 @@ Statement: RETURN SC;
 
 int main()
 {
+    yydebug = 1;
 	yyparse();
 }
 
