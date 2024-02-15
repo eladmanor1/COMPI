@@ -21,6 +21,8 @@
 %nonassoc NUM
 %nonassoc B
 
+%right ASSIGN
+
 %left OR
 %left AND
 %left EQUALITY
@@ -30,7 +32,7 @@
 %left MUL_DIV
 
 %right NOT
-%nonassoc LPAREN RPAREN LBRACE RBRACE
+%left LPAREN RPAREN LBRACE RBRACE
 %right ELSE
 
 
@@ -56,7 +58,7 @@ Type:           INT                                                 {printProduc
                 | BOOL                                              {printProductionRule(18);};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
-                | Exp MUL_DIV Exp                                   {printf("This is MUL_DIV\n");}
+                | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
                 | NUM                                               {printProductionRule(23);}
