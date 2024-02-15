@@ -56,7 +56,7 @@ Type:           INT                                                 {printProduc
                 | BOOL                                              {printProductionRule(18);};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
-                | Exp MUL_DIV Exp                                   {printProductionRule(20);}
+                | Exp MUL_DIV Exp                                   {printf("This is MUL_DIV\n");}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
                 | NUM                                               {printProductionRule(23);}
