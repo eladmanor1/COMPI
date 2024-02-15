@@ -3,10 +3,11 @@
 	#include <stdlib.h>
 
 	using namespace std;
-
+#define YYSTYPE int
 	extern int yylex();
 	int yyerror(const char * message);
 %}
+
 
 
 //garbage
@@ -38,7 +39,7 @@
 Program:    Statements;
 Statements:    Statement;
 Statements:   Statements Statement;
-Statement: LBRACE Statements RBRACE {printf("Noa kirrel\n")};
+Statement: LBRACE Statements RBRACE {printf("Noa kirrel\n");};
 Statement: RETURN SC;
 
 
