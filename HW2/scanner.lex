@@ -45,7 +45,6 @@ continue                            return CONTINUE;
 =                                   return ASSIGN;
 [!<>=]=                             return RELOP;
 [<>]                                return RELOP;
-//[+\-*/]                           return BINOP;
 [+\-]                               return ADD_SUB;
 [*/]                                return MUL_DIV;
 {letter}+[0-9a-zA-Z]*               return ID;
