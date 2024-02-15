@@ -24,6 +24,7 @@ using namespace output;
 %token INT BYTE BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
 
 
+
 %token ID
 %token SC
 %token RETURN
@@ -32,9 +33,11 @@ using namespace output;
 %nonassoc B
 
 
-%token OR
-%token AND
-%token RELOP
+%left OR
+%left AND
+%left EQUALITY
+%left RELATION
+
 %token NOT
 
 %left ADD_SUB
@@ -80,11 +83,13 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | NUM B                                             {printProductionRule(24);}
                 | STRING                                            {printProductionRule(25);}
                 | TRUE                                              {printProductionRule(26);}
-                | FALSE                                             {printProductionRule(27);};
-//                | NOT Exp                                           {printProductionRule(28);}
-//                | Exp AND Exp                                       {printProductionRule(29);}
-//                | Exp OR Exp                                        {printProductionRule(30);}
-//                | Exp RELOP Exp                                     {printProductionRule(31);}
+                | FALSE                                             {printProductionRule(27);}
+                | NOT Exp                                           {printProductionRule(28);}
+                | Exp AND Exp                                       {printProductionRule(29);}
+                | Exp OR Exp                                        {printProductionRule(30);}
+                | Exp RELATION Exp                                     {printProductionRule(31);}
+                | Exp EQUALITY Exp                                     {printProductionRule(31);};
+
 //                | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
 
 
