@@ -29,13 +29,12 @@ using namespace output;
 %token RETURN
 
 
-%left OR
-%left AND
-%left RELOP
-%right NOT
-%left LPAREN RPAREN LBRACE RBRACE
+%token OR
+%token AND
+%token RELOP
+%token NOT
+%token LPAREN RPAREN LBRACE RBRACE
 %right ELSE
-
 
 
 //%type<exp> Exp
@@ -52,7 +51,16 @@ Program:        Statements   {printProductionRule(1);};
 Statements:     Statement {printProductionRule(2);}
                 | Statements Statement {printProductionRule(3);};
 Statement:      LBRACE Statements RBRACE {printProductionRule(4);}
-                | RETURN SC {printProductionRule(5);};
+                | Type ID SC {printProductionRule(5);}
+                | Type ID ASSIGN Exp SC {printProductionRule(6);}
+                | ID ASSIGN Exp SC {printProductionRule(7);}
+                | Call SC {printProductionRule(8);}
+                | RETURN SC {printProductionRule(9);}
+                | IF LPAREN Exp RPAREN Statement {printProductionRule(10);}
+                | IF LPAREN Exp RPAREN Statement ELSE Statement {printProductionRule(11);}
+                | WHILE LPAREN Exp RPAREN Statement {printProductionRule(12);}
+                | BREAK SC {printProductionRule(13);}
+                | CONTINUE SC {printProductionRule(14);};
 
 
 //Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
