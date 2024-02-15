@@ -123,7 +123,7 @@ or                                  return(showToken("OR",OR));
 not                                 return(showToken("NOT",NOT));
 true                                return(showToken("TRUE",TRUE));
 false                               return(showToken("FALSE",FALSE));
-return                              return(showToken("RETURN",RETURN));
+return                              {printf("REUTRNNNN\n"); return RETURN);}
 if                                  return(showToken("IF",IF));
 else                                return(showToken("ELSE",ELSE));
 while                               return(showToken("WHILE",WHILE));
@@ -132,8 +132,8 @@ continue                            return(showToken("CONTINUE",CONTINUE));
 ;                                   return(showToken("SC",SC));
 "("                                 return(showToken("LPAREN",LPAREN));
 ")"                                 return(showToken("RPAREN",RPAREN));
-"{"                                 return(showToken("LBRACE",LBRACE));
-"}"                                 return(showToken("RBRACE",RBRACE));
+"{"                                 {printf("Elad homo, {\n"); return LBRACE);}
+"}"                                 {printf("Elad homo, {\n"); return RBRACE);}
 =                                   return(showToken("ASSIGN",ASSIGN));
 [!<>=]=                             return(showToken("RELOP",RELOP));
 [<>]                                return(showToken("RELOP",RELOP));
