@@ -3,7 +3,7 @@
 	#include <stdlib.h>
 
 	using namespace std;
-#define YYSTYPE int
+    #define YYSTYPE int
 	extern int yylex();
 	int yyerror(const char * message);
 %}
@@ -26,7 +26,7 @@
 
 
 
-%type<exp> Exp
+//%type<exp> Exp
 
 %%
 //example
@@ -56,8 +56,8 @@ int main()
 	yyparse();
 }
 
-//int yyerror(const char * message)
-//{
-//	cout<<"Parse error: "<<message<<endl;
-//	exit(0);
-//}
+int yyerror(const char * message)
+{
+	cout<<"Parse error: "<<message<<endl;
+	exit(0);
+}
