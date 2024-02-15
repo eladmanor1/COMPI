@@ -1,6 +1,7 @@
 %{
 	#include <iostream>
 	#include <stdlib.h>
+#include "output.hpp"
     #define YYERROR_VERBOSE 1
 #define YYDEBUG 1
 
