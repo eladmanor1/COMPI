@@ -38,10 +38,11 @@ using namespace output;
 %left EQUALITY
 %left RELATION
 
-%token NOT
 
 %left ADD_SUB
 %left MUL_DIV
+
+%right NOT
 %nonassoc LPAREN RPAREN LBRACE RBRACE
 %right ELSE
 
