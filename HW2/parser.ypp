@@ -20,7 +20,7 @@
 %token Type
 %token ID
 %token SC
-% RETURN
+%token RETURN
 
 
 
