@@ -2,8 +2,8 @@
 	#include <iostream>
 	#include <stdlib.h>
 #include "output.hpp"
-    #define YYERROR_VERBOSE 1
-#define YYDEBUG 1
+//    #define YYERROR_VERBOSE 1
+//#define YYDEBUG 1
 
 using namespace std;
     #define YYSTYPE int
@@ -47,10 +47,11 @@ using namespace std;
 //		}
 //	;
 
-Program:       Statements;
-Statements:    Statement | Statements Statement;
-Statement: LBRACE Statements RBRACE {printf("Noa kirrel\n");}  |
-           RETURN SC;
+Program:        Statements   {printProductRule(1);};
+Statements:     Statement {printProductRule(2);}
+                | Statements Statement {printProductRule(3);};
+Statement:      LBRACE Statements RBRACE {printProductRule(4);}
+                | RETURN SC {printProductRule(5);};
 
 
 //Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
@@ -63,7 +64,7 @@ Statement: LBRACE Statements RBRACE {printf("Noa kirrel\n");}  |
 
 int main()
 {
-    yydebug = 1;
+//    yydebug = 1;
 	yyparse();
 }
 
