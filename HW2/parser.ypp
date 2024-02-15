@@ -20,7 +20,7 @@ using namespace std;
 //%left tkand
 
 
-%token VOID INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING
+%token INT BYTE B BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE NUM STRING BINOP ASSIGN
 
 
 %token ID
@@ -31,7 +31,6 @@ using namespace std;
 %left OR
 %left AND
 %left RELOP
-%left ADD_SUB
 %right NOT
 %left LPAREN RPAREN LBRACE RBRACE
 %right ELSE

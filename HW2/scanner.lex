@@ -111,8 +111,7 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-void			                    return VOID
-int                                 return INT
+int                                 return INT;
 byte                                return BYTE;
 b                                   return B;
 bool                                return BOOL;
