@@ -74,6 +74,14 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | STRING                                            {printProductionRule(25);}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);}
+                | NOT Exp                                           {printProductionRule(28);}
+                | Exp AND Exp                                       {printProductionRule(29);}
+                | Exp OR Exp                                        {printProductionRule(30);}
+                | Exp RELOP Exp                                     {printProductionRule(31);}
+                | LPAREN Type RPAREN Exp                            {printProductionRule(32);}
+
+
+
 
 //Exp	:	Exp tkand Exp { $$.value = $1.value && $3.value; }
 //	|	Exp tkor Exp { $$.value = $1.value || $3.value; }
