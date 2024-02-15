@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "tokens.hpp"
 #include <stdlib.h>
+#include "output.hpp"
+#include "parser.tab.hpp"
 
 char str[1024];
 int index1 = 0;
