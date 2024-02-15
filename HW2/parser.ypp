@@ -66,7 +66,7 @@ Type:           INT                                                 {printProduc
                 | BYTE                                              {printProductionRule(17);}
                 | BOOL                                              {printProductionRule(18);};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
-//                | Exp BINOP Exp                                     {printProductionRule(20);}
+                | Exp BINOP Exp                                     {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
 //                | NUM                                               {printProductionRule(23);}
