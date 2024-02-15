@@ -88,10 +88,9 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | NOT Exp                                           {printProductionRule(28);}
                 | Exp AND Exp                                       {printProductionRule(29);}
                 | Exp OR Exp                                        {printProductionRule(30);}
-                | Exp RELATION Exp                                     {printProductionRule(31);}
-                | Exp EQUALITY Exp                                     {printProductionRule(31);};
-
-//                | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
+                | Exp RELATION Exp                                   {printProductionRule(31);}
+                | Exp EQUALITY Exp                                   {printProductionRule(31);}
+                | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
 
 
 
