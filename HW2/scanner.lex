@@ -54,7 +54,7 @@ continue                            return CONTINUE;
 [1-9]+{digit}*                      return NUM;
 \"([^\n\r\"\\]|\\[rnt"\\])+\"       return STRING;
 {whitespace}                        ;
-.		                            {errorLex(yylineno); exit(0);}
+.		                            {output::errorLex(yylineno); exit(0);}
 
 
 %%
