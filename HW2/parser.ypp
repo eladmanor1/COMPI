@@ -9,6 +9,7 @@
     using namespace output;
     #define YYSTYPE int
 	extern int yylex();
+    extern int yylineno;
 	int yyerror(const char * message);
 %}
 
@@ -85,6 +86,6 @@ int main()
 
 int yyerror(const char * message)
 {
-	cout<<"Parse error: "<<message<<endl;
-	exit(0);
+    errorSyn(yylineno);
+    exit(0);
 }

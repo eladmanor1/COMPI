@@ -53,7 +53,7 @@ continue                            return CONTINUE;
 [1-9]+{digit}*                      return NUM;
 \"([^\n\r\"\\]|\\[rnt"\\])+\"       return STRING;
 {whitespace}                        ;
-.		                            {printf("Error %s\n",yytext); exit(0);}
+.		                            {errorLex(yylineno); exit(0);}
 
 
 %%
