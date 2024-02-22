@@ -24,12 +24,20 @@ class boolType{
     const string type = "bool";
 };
 
+class stringType{
+    string value;
+    const string type = "string"
+
+};
 class expType{
     string type;
-    string value;
+    union value{
+        int intValue;
+        bool boolValue;
+        byte byteValue;
+        string stringValue;
+    };
     bool is_var;
-
-
 };
 
 

@@ -18,6 +18,7 @@
     class expType*;
     class byteType*;
     class boolType*;
+    class stringType*;
     };
 
 
@@ -73,9 +74,9 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
-                | NUM                                               {$$ = new expType($1.type, $1.value, false)};
-                | NUM B                                             {$$ = new expType($1.type, $1.value, false)};
-                | STRING                                            {printProductionRule(25);}
+                | NUM                                               {$$ = new expType($1.type, $1.value, false);}
+                | NUM B                                             {$$ = new expType($1.type, $1.value, false);}
+                | STRING                                            {$$ = new expType($1.type, $1.value, false);}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);}
                 | NOT Exp                                           {printProductionRule(28);}

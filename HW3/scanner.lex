@@ -51,8 +51,8 @@ continue                            return CONTINUE;
 [*/]                                return MUL_DIV;
 {letter}+[0-9a-zA-Z]*               return ID;
 0                                   {yylval = new struct intType(atoi(yytext)); return NUM;}
-[1-9]+{digit}*                      return NUM;
-\"([^\n\r\"\\]|\\[rnt"\\])+\"       return STRING;
+[1-9]+{digit}*                      {yylval = new struct intType(atoi(yytext)); return NUM;}
+\"([^\n\r\"\\]|\\[rnt"\\])+\"       {yylval = new struct stringType(yytext); return STRING;}
 "/""/"[^\r\n]*[\r|\n|\r\n]?         ;
 {whitespace}                        ;
 .		                            {output::errorLex(yylineno); exit(0);}
