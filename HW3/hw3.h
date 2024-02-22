@@ -37,6 +37,7 @@ class expType{
         bool boolValue;
         byte byteValue;
         string stringValue;
+        int* ptrVal;
     };
     bool is_var;
     string name ="";
@@ -57,14 +58,33 @@ class typeID{
     };
     string type;
 };
+
 class callType{
-    string name
-    union retType{
-        int intValue;
-        void voidValue;
-    };
-    const string type = "call"
+    string type;
 };
+
+callType* creatCallObj(string func_name, expType* func_arg){
+    if( func_arg->name == "")
+        return nullptr;
+    switch (func_name){
+        case "print" :
+            if(func_arg->type != "string")
+                return nullptr;
+            return (new callType("void"));
+            break;
+        case "printi" :
+            if(func_arg->type != "int")
+                return nullptr;
+            return (new callType("void"));
+            break;
+        case "readi" :
+            if(func_arg->type != "int")
+                return nullptr;
+            return (new callType("int"));
+            break;
+        default : return nullptr; break;
+    }
+}
 
 
 class statementType{

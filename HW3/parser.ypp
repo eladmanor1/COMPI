@@ -86,7 +86,9 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | WHILE LPAREN Exp RPAREN Statement                 {printProductionRule(12);}
                 | BREAK SC                                          {printProductionRule(13);}
                 | CONTINUE SC                                       {printProductionRule(14);};
-Call:           ID LPAREN Exp RPAREN                                {printProductionRule(15);};
+Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1.name,$3);
+                                                                     if(callobj == nullptr){ some error; }
+                                                                     $$ = callobj}
 Type:           INT                                                 {printProductionRule(16);}
                 | BYTE                                              {printProductionRule(17);}
                 | BOOL                                              {printProductionRule(18);};
@@ -94,7 +96,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {$$ = new expType($1.type, $1.value, true, $1.name);}
-                | Call                                              {printProductionRule(22);}
+                | Call                                              {$$ = new expType($1.type,nullptr,false}
                 | NUM                                               {$$ = new expType($1.type, $1.value, false);}
                 | NUM B                                             {$$ = new expType($1.type, $1.value, false);}
                 | STRING                                            {$$ = new expType($1.type, $1.value, false);}
