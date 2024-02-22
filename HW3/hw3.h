@@ -40,6 +40,21 @@ class expType{
     bool is_var;
 };
 
+class typeType{
+    string value;
+    string type;
+};
+
+class typeID{
+    string name;
+    union value{
+        int intValue;
+        bool boolValue;
+        byte byteValue;
+        string stringValue;
+    };
+    string type;
+};
 
 
 #endif //HW3_OUTPUT_HPP_HW3_H

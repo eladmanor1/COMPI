@@ -23,10 +23,10 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-int                                 return INT;
-byte                                return BYTE;
+int                                 {yylval = new typeType("int", "int"); return INT;}
+byte                                {yylval = new typeType("byte", "byte"); return BYTE;}
 b                                   return B;
-bool                                return BOOL;
+bool                                {yylval = new typeType("bool", "bool"); return BOOL;}
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
