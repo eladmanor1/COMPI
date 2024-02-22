@@ -30,7 +30,7 @@ bool                                return BOOL;
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
-true                                return TRUE;
+true                                {yylval = new boolType(return TRUE;
 false                               return FALSE;
 return                              return RETURN;
 if                                  return IF;
@@ -50,7 +50,7 @@ continue                            return CONTINUE;
 [+\-]                               return ADD_SUB;
 [*/]                                return MUL_DIV;
 {letter}+[0-9a-zA-Z]*               return ID;
-0                                   return NUM;
+0                                   {yylval = new struct intType(atoi(yytext)); return NUM;}
 [1-9]+{digit}*                      return NUM;
 \"([^\n\r\"\\]|\\[rnt"\\])+\"       return STRING;
 "/""/"[^\r\n]*[\r|\n|\r\n]?         ;

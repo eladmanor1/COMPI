@@ -2,15 +2,26 @@
 	#include <iostream>
     #include <stdlib.h>
     #include "output.hpp"
+    #include"hw3.h"
 //    #define YYERROR_VERBOSE 1
 //#define YYDEBUG 1
 
     using namespace std;
     using namespace output;
-    #define YYSTYPE int
 	extern int yylex();
     extern int yylineno;
 	int yyerror(const char * message);
+
+
+	%union {
+    class intType*;
+    class expType*;
+    class byteType*;
+    class boolType*;
+    };
+
+
+
 %}
 
 %token INT BYTE BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
@@ -62,8 +73,8 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {printProductionRule(21);}
                 | Call                                              {printProductionRule(22);}
-                | NUM                                               {printProductionRule(23);}
-                | NUM B                                             {printProductionRule(24);}
+                | NUM                                               {$$ = new expType($1.type, $1.value, false)};
+                | NUM B                                             {$$ = new expType($1.type, $1.value, false)};
                 | STRING                                            {printProductionRule(25);}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);}
