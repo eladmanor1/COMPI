@@ -57,8 +57,27 @@ Program:        Statements                                          {printProduc
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
 Statement:      LBRACE Statements RBRACE                            {printProductionRule(4);}
-                | Type ID SC                                        {printProductionRule(5);}
-                | Type ID ASSIGN Exp SC                             {printProductionRule(6);}
+
+
+                | Type ID SC                                        {if(checkSymbolTableForSymbol($2.name)){
+                                                                    printf("ERRR\n");
+                                                                    exit(0);
+                                                                    }
+                                                                    addSymbolTableRow($2.name, $2.type);
+                                                                    $$ = new statementType($1.name);}
+
+
+                | Type ID ASSIGN Exp SC                             {if(checkSymbolTableForSymbol($2.name)){
+                                                                    printf("ERRR\n");
+                                                                    exit(0);
+                                                                    }
+                                                                    if(!compareType($1.name, $4.name)){
+                                                                        if(
+                                                                    }
+                                                                    addSymbolTableRow($2.name, $2.type);
+                                                                    $$ = new statementType($1.name);}
+
+
                 | ID ASSIGN Exp SC                                  {printProductionRule(7);}
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
@@ -74,7 +93,7 @@ Type:           INT                                                 {printProduc
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
-                | ID                                                {printProductionRule(21);}
+                | ID                                                {$$ = new expType($1.type, $1.value, true, $1.name);}
                 | Call                                              {printProductionRule(22);}
                 | NUM                                               {$$ = new expType($1.type, $1.value, false);}
                 | NUM B                                             {$$ = new expType($1.type, $1.value, false);}

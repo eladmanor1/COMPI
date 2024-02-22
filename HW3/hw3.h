@@ -6,6 +6,7 @@
 #define HW3_OUTPUT_HPP_HW3_H
 #include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -38,6 +39,7 @@ class expType{
         string stringValue;
     };
     bool is_var;
+    string name ="";
 };
 
 class typeType{
@@ -63,5 +65,76 @@ class callType{
     };
     const string type = "call"
 };
+
+
+class statementType{
+    string name;
+};
+
+
+class symbolTableRow{
+    string name;
+    string type;
+    int offset;
+};
+
+
+typedef vector<symbolTableRow> symbolTable;
+
+
+vector<symbolTable> symbolTablesStack;
+stack<int> offsetStack;
+
+
+bool checkSymbolTableForSymbol(string symbolName){
+    if(symbolTablesStack.empty()){
+        return false;
+    }
+
+    for(auto& currSymbolTable : symbolTablesStack){
+        for(auto& currRow : currSymbolTable){
+            if(currRow.name == symbolName){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+void addSymbolTableRow(string name, string type){
+    if(symbolTablesStack.empty()){
+        cout << "Something wrong has happened!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+        return;
+    }
+
+    offset = offsetStack.top();
+    offsetStack.top() += 1;
+
+    symbolTableRow rowToAdd(name, type, offset);
+
+    symbolTablesStack.back().push_back(rowToAdd);
+}
+
+bool compareType(string type1, string type2){
+    if (type1 == "string"){
+        return (type2 == "string");
+    }
+    else if(type1 == "bool") {
+        return (type2 == "bool");
+    }
+    else if(type1 == "int") {
+        return (type2 == "int");
+    }
+    else if(type1 == "byte") {
+        return (type2 == "byte");
+    }
+}
+
+
+
+
+
+
 
 #endif //HW3_OUTPUT_HPP_HW3_H
