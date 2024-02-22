@@ -20,6 +20,7 @@
     class boolType*;
     class stringType*;
     class typeType*;
+    class callType*;
     };
 
 
@@ -67,9 +68,9 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | BREAK SC                                          {printProductionRule(13);}
                 | CONTINUE SC                                       {printProductionRule(14);};
 Call:           ID LPAREN Exp RPAREN                                {printProductionRule(15);};
-Type:           INT                                                 {$$ = new typeType($1.value, $1.type);}
-                | BYTE                                              {$$ = new typeType($1.value, $1.type);}
-                | BOOL                                              {$$ = new typeType($1.value, $1.type);};
+Type:           INT                                                 {printProductionRule(16);}
+                | BYTE                                              {printProductionRule(17);}
+                | BOOL                                              {printProductionRule(18);};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}

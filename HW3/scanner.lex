@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "parser.tab.hpp"
 #include "output.hpp"
-
+#include "hw3.h"
 %}
 
 %x STRING_STAGE
@@ -30,8 +30,8 @@ bool                                {yylval = new typeType("bool", "bool"); retu
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
-true                                {yylval = new boolType(return TRUE;
-false                               return FALSE;
+true                                {yylval = new boolType(return TRUE)};
+false                               {yylval = new boolType(return FALSE)};
 return                              return RETURN;
 if                                  return IF;
 else                                return ELSE;

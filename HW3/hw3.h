@@ -55,6 +55,13 @@ class typeID{
     };
     string type;
 };
-
+class callType{
+    string name
+    union retType{
+        int intValue;
+        void voidValue;
+    };
+    const string type = "call"
+};
 
 #endif //HW3_OUTPUT_HPP_HW3_H
