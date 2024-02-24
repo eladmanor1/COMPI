@@ -29,6 +29,8 @@ struct stringType{
     string value;
     const string type = "string";
 
+    stringType(string value, string type) : value(value), type(type) {};
+
 };
 struct expType{
     string type;
@@ -61,6 +63,8 @@ struct typeID{
 
 struct callType{
     string type;
+
+    callType(string type) : type(type) {};
 };
 
 callType* creatCallObj(string func_name, expType* func_arg){
