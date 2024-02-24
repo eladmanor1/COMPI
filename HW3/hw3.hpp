@@ -10,27 +10,27 @@
 
 using namespace std;
 
-class intType{
+struct intType{
     int value;
     const string type = "int";
 };
 
-class byteType{
+struct byteType{
     byte value;
     const string type = "byte";
 };
 
-class boolType{
+struct boolType{
     bool value;
     const string type = "bool";
 };
 
-class stringType{
+struct stringType{
     string value;
-    const string type = "string"
+    const string type = "string";
 
 };
-class expType{
+struct expType{
     string type;
     union value{
         int intValue;
@@ -43,12 +43,12 @@ class expType{
     string name ="";
 };
 
-class typeType{
+struct typeType{
     string value;
     string type;
 };
 
-class typeID{
+struct typeID{
     string name;
     union value{
         int intValue;
@@ -59,7 +59,7 @@ class typeID{
     string type;
 };
 
-class callType{
+struct callType{
     string type;
 };
 
@@ -87,12 +87,12 @@ callType* creatCallObj(string func_name, expType* func_arg){
 }
 
 
-class statementType{
+struct statementType{
     string name;
 };
 
 
-class symbolTableRow{
+struct symbolTableRow{
     string name;
     string type;
     int offset;

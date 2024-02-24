@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "parser.tab.hpp"
-#include "output.hpp"
-#include "hw3.h"
+#include "hw3_output.hpp"
+#include "hw3.hpp"
+
 %}
 
 %x STRING_STAGE

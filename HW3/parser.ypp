@@ -14,13 +14,13 @@
 
 
 	%union {
-    class intType*;
-    class expType*;
-    class byteType*;
-    class boolType*;
-    class stringType*;
-    class typeType*;
-    class callType*;
+    struct intType*;
+    struct expType*;
+    struct byteType*;
+    struct boolType*;
+    struct stringType*;
+    struct typeType*;
+    struct callType*;
     };
 
 
