@@ -14,7 +14,7 @@ union unionTypes{
     int intValue;
     bool boolValue;
     byte byteValue;
-    string stringValue;
+    string* stringValue;
     int* ptrVal;
 };
 
@@ -29,7 +29,7 @@ struct byteType{
     byte value;
     const string type = "byte";
 
-    byteType(int value, string type) : value(value), type(type) {};
+    byteType(byte value, string type) : value(value), type(type) {};
 
 };
 
