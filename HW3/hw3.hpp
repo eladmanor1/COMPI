@@ -10,19 +10,35 @@
 
 using namespace std;
 
+union unionTypes{
+    int intValue;
+    bool boolValue;
+    byte byteValue;
+    string stringValue;
+    int* ptrVal;
+};
+
 struct intType{
     int value;
     const string type = "int";
+
+    intType(int value, string type) : value(value), type(type) {};
 };
 
 struct byteType{
     byte value;
     const string type = "byte";
+
+    byteType(int value, string type) : value(value), type(type) {};
+
 };
 
 struct boolType{
     bool value;
     const string type = "bool";
+
+    boolType(int value, string type) : value(value), type(type) {};
+
 };
 
 struct stringType{
@@ -34,31 +50,26 @@ struct stringType{
 };
 struct expType{
     string type;
-    union value{
-        int intValue;
-        bool boolValue;
-        byte byteValue;
-        string stringValue;
-        int* ptrVal;
-    };
+    unionTypes value;
     bool is_var;
     string name ="";
+
+    expType(string type, unionTypes value, bool is_var, string name) : type(type), value(value), is_var(is_var), name(name) {};
 };
 
 struct typeType{
     string value;
     string type;
+
+    typeType(string value, string type) : value(value), type(type) {};
 };
 
 struct typeID{
     string name;
-    union value{
-        int intValue;
-        bool boolValue;
-        byte byteValue;
-        string stringValue;
-    };
+    unionTypes value;
     string type;
+
+    typeID(string name, unionTypes value, string type) : name(name), value(value), type(type) {};
 };
 
 struct callType{
@@ -93,6 +104,8 @@ callType* creatCallObj(string func_name, expType* func_arg){
 
 struct statementType{
     string name;
+
+    statementType(string name) : name(name) {};
 };
 
 
@@ -100,6 +113,8 @@ struct symbolTableRow{
     string name;
     string type;
     int offset;
+
+    symbolTableRow(string name, string type, int offset) : name(name), type(type), offset(offset) {};
 };
 
 
