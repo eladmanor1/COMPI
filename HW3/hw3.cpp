@@ -37,3 +37,51 @@ void addSymbolTableRow(string name, string type){
 
     symbolTablesStack.back().push_back(rowToAdd);
 }
+
+
+
+
+bool compareType(string type1, string type2){
+    if (type1 == "string"){
+        return (type2 == "string");
+    }
+    else if(type1 == "bool") {
+        return (type2 == "bool");
+    }
+    else if(type1 == "int") {
+        return (type2 == "int");
+    }
+    else if(type1 == "byte") {
+        return (type2 == "byte");
+    }
+    else{
+        printf("Something has gone terribly wrong!\n");
+        return false;
+    }
+}
+
+void printProductionRule(int meow){
+    ++meow;
+}
+
+
+callType* creatCallObj(string func_name, expType* func_arg){
+    if( func_arg->name == "")
+        return nullptr;
+    if(func_name=="print") {
+        if (func_arg->type != "string")
+            return nullptr;
+        return (new callType("void", func_name));
+    }
+    if(func_name=="printi") {
+        if(func_arg->type != "int")
+            return nullptr;
+        return (new callType("void",func_name));
+    }
+    if(func_name=="readi") {
+        if(func_arg->type != "int")
+            return nullptr;
+        return (new callType("int",func_name));
+    }
+    return nullptr;
+}
