@@ -24,9 +24,8 @@
     struct typeID* type_ID;
     struct statementType* statement_type;
     struct loserType* loser_type;
-    } myUnion;
+    }
 
-    #define YYSTYPE myUnion
 
 
 %}
