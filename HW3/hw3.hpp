@@ -55,7 +55,7 @@ struct boolType{
 
 struct stringType{
     string value;
-    static const string type;
+    const string type;
 
     stringType(string value) : value(value), type("string") {};
 
