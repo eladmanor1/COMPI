@@ -7,8 +7,6 @@
 #include "hw3_output.hpp"
 #include "hw3.hpp"
 
-extern uninioType yylval;
-
 %}
 
 %x STRING_STAGE
