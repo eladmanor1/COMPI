@@ -67,21 +67,21 @@ void printProductionRule(int meow){
 }
 
 
-callType* creatCallObj(string func_name, expType* func_arg){
-    if( func_arg->name == "")
+callType* creatCallObj(string func_name, string type){
+    if(type == "")
         return nullptr;
     if(func_name=="print") {
-        if (func_arg->type != "string")
+        if (type != "string")
             return nullptr;
         return (new callType("void", func_name));
     }
     if(func_name=="printi") {
-        if(func_arg->type != "int")
+        if(type != "int")
             return nullptr;
         return (new callType("void",func_name));
     }
     if(func_name=="readi") {
-        if(func_arg->type != "int")
+        if(type != "int")
             return nullptr;
         return (new callType("int",func_name));
     }

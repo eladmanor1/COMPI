@@ -122,7 +122,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | CONTINUE SC                                       {printProductionRule(14);};
 
 
-Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name,$3);
+Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name, $3->type);
                                                                      if(callobj == nullptr){
                                                                         printf("error in call object");
                                                                      }
@@ -175,6 +175,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
+                                                                        exit(0);
                                                                     }
                                                                     }
                 | Exp EQUALITY Exp                                  {if (($1->type == "byte" || $1->type == "int") && ($3->type == "byte" || $3->type == "int")){
@@ -183,6 +184,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
+                                                                        exit(0);
                                                                     }
                                                                     }
                 | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
