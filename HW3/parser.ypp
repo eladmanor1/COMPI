@@ -12,6 +12,9 @@
     extern int yylineno;
 	int yyerror(const char * message);
 
+	extern vector<symbolTable> symbolTablesStack;
+    extern stack<int> offsetStack;
+
 
 
 

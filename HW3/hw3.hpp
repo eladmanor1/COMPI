@@ -114,8 +114,7 @@ struct symbolTableRow{
 typedef vector<symbolTableRow> symbolTable;
 
 
-vector<symbolTable> symbolTablesStack;
-stack<int> offsetStack;
+
 
 
 bool checkSymbolTableForSymbol(string symbolName);
