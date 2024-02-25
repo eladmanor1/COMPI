@@ -55,9 +55,9 @@ struct boolType{
 
 struct stringType{
     string value;
-    static const string type = "string";
+    static const string type;
 
-    stringType(string value) : value(value) {};
+    stringType(string value) : value(value) type("string") {};
 
 };
 struct expType{
@@ -111,6 +111,7 @@ callType* creatCallObj(string func_name, expType* func_arg){
             break;
         default : return nullptr; break;
     }
+    return nullptr;
 }
 
 
@@ -179,6 +180,10 @@ bool compareType(string type1, string type2){
     }
     else if(type1 == "byte") {
         return (type2 == "byte");
+    }
+    else{
+        printf("Something has gone terribly wrong!\n");
+        return false;
     }
 }
 
