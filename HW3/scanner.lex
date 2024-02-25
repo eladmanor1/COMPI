@@ -51,7 +51,7 @@ continue                            return CONTINUE;
 [<>]                                return RELATION;
 [+\-]                               return ADD_SUB;
 [*/]                                return MUL_DIV;
-{letter}+[0-9a-zA-Z]*               {yylval.type_ID = new typeID(yytext, unionTypes("none"), "none"); return ID;}
+{letter}+[0-9a-zA-Z]*               {yylval.type_ID = new typeID(yytext, unionTypes(new string("none")), "none"); return ID;}
 0                                   {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
 [1-9]+{digit}*                      {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
 \"([^\n\r\"\\]|\\[rnt"\\])+\"       {yylval.string_type = new struct stringType(yytext); return STRING;}
