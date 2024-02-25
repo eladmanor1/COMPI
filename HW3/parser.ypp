@@ -80,7 +80,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                         errorDef(yylineno, $2->name);
                                                                         exit(0);
                                                                     }
-                                                                    addSymbolTableRow($2->name, $2->type);
+                                                                    addSymbolTableRow($2->name, $1->name);
                                                                     $$ = new statementType($1->name);}
 
 
