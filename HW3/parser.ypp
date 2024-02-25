@@ -85,10 +85,12 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
 
                 | Type ID ASSIGN Exp SC                             {if(checkSymbolTableForSymbol($2->name)){
-                                                                    printf("ERRR\n");
-                                                                    exit(0);
+                                                                        errorDef(yylineno, $2->name);
+                                                                        exit(0);
                                                                     }
-                                                                    if(!compareType($1->name, $4->name)){
+                                                                    if(!compareType($1->name, $4->type)){
+                                                                        errorMismatch(yylineno);
+                                                                        exit(0);
                                                                     }
                                                                     addSymbolTableRow($2->name, $2->type);
                                                                     $$ = new statementType($1->name);}
