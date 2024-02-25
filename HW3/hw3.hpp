@@ -147,7 +147,7 @@ void addSymbolTableRow(string name, string type){
         return;
     }
 
-    offset = offsetStack.top();
+    int offset = offsetStack.top();
     offsetStack.top() += 1;
 
     symbolTableRow rowToAdd(name, type, offset);
