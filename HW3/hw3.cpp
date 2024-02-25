@@ -104,3 +104,18 @@ void initGlobalDataStructures(){
     initSymbolTablesStack();
     initOffsetStack();
 }
+
+string getSymbolType(string symbolName){
+    if(symbolTablesStack.empty()){
+        printf("SHITTTTT\n")
+    }
+
+    for(auto& currSymbolTable : symbolTablesStack){
+        for(auto& currRow : currSymbolTable){
+            if(currRow.name == symbolName){
+                return currRow.type;
+            }
+        }
+    }
+    return "error and im crazy";
+}

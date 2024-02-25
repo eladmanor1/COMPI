@@ -94,8 +94,6 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     }
                                                                     addSymbolTableRow($2->name, $1->name);
                                                                     $$ = new statementType($1->name);
-                                                                    printf("The type of the new created expression is: (inside cutting ID) %s\n", $$->type);}
-
 
                 | ID ASSIGN Exp SC                                  {printProductionRule(7);}
                 | Call SC                                           {printProductionRule(8);}
@@ -123,7 +121,10 @@ Type:           INT                                                 {$$ = new ty
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
-                | ID                                                {$$ = new expType($1->type, $1->value, true, $1->name);
+                | ID                                                {if(!checkSymbolTableForSymbol($1->name)){
+                                                                    errorUndef(yylineno, $1->name);
+                                                                    }
+                                                                    $$ = new expType(getSymbolType($1->name), $1->value, true, $1->name);
                                                                     printf("The type of the new created expression is: (inside cutting ID) %s\n", $$->type);}
                 | Call                                              {$$ = new expType($1->type,unionTypes((int*)nullptr),false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}

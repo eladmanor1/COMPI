@@ -105,6 +105,7 @@ struct statementType{
 struct symbolTableRow{
     string name;
     string type;
+//    unionTypes value;
     int offset;
 
     symbolTableRow(string name, string type, int offset) : name(name), type(type), offset(offset) {};
@@ -115,6 +116,8 @@ typedef vector<symbolTableRow> symbolTable;
 
 
 bool checkSymbolTableForSymbol(string symbolName);
+
+string getSymbolType(string symbolName);
 
 
 void addSymbolTableRow(string name, string type);
