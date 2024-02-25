@@ -184,7 +184,7 @@ bool compareType(string type1, string type2){
     }
 }
 
-struct loserType(){
+struct loserType{
     string name;
     loserType(string name) : name(name) {};
 }
