@@ -26,6 +26,8 @@
     struct loserType* loser_type;
     } myUnion;
 
+    #define YYSTYPE myUnion
+
 
 %}
 
