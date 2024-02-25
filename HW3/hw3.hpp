@@ -92,7 +92,7 @@ struct callType{
     callType(string type, string name) : type(type), name(name) {};
 };
 //comment
-callType* creatCallObj(string func_name, string func_arg);
+callType* creatCallObj(string func_name, string func_arg, int lineno);
 
 
 struct statementType{
