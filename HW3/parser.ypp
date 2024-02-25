@@ -77,8 +77,8 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
                 | Type ID SC                                        {printf("Statement -> Type ID SC\n");
                                                                     if(checkSymbolTableForSymbol($2->name)){
-                                                                    printf("ERRR\n");
-                                                                    exit(0);
+                                                                        errorDef(yylineno, $2->name);
+                                                                        exit(0);
                                                                     }
                                                                     addSymbolTableRow($2->name, $2->type);
                                                                     $$ = new statementType($1->name);}
