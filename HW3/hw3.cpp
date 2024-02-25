@@ -8,11 +8,6 @@
 using namespace std;
 
 
-
-vector<symbolTable> symbolTablesStack;
-stack<int> offsetStack;
-
-
 bool checkSymbolTableForSymbol(string symbolName){
     if(symbolTablesStack.empty()){
         return false;
