@@ -8,6 +8,8 @@
 #include "hw3_output.hpp"
 
 using namespace std;
+using namespace output;
+
 
 
 vector<symbolTable> symbolTablesStack;
