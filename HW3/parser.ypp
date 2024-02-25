@@ -22,6 +22,7 @@
     struct typeType* type_type;
     struct callType* call_type;
     struct typeID* type_ID;
+    struct statementType* statement_type;
     } myUnion;
 
     #define YYSTYPE myUnion
@@ -29,6 +30,8 @@
 
 
 %}
+
+%type<statement_type> Statement
 
 %token CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
 
