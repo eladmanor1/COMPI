@@ -98,11 +98,11 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | ID ASSIGN Exp SC                                  {if(!checkSymbolTableForSymbol($1->name)){
                                                                         errorUndef(yylineno, $1->name);
                                                                         exit(0);}
-                                                                    if(compareType($1->type, $3->type)) {
+                                                                    if(compareType(getSymbolType($1->name), $3->type)) {
                                                                         //change value
                                                                         $$ = new statementType($1->name);
                                                                     }
-                                                                    else if($1->type == "int" && $3->type == "byte"){
+                                                                    else if((getSymbolType($1->name) == "int" && $3->type == "byte"){
                                                                         //cast and then change value
                                                                         $$ = new statementType($1->name);
                                                                     }
