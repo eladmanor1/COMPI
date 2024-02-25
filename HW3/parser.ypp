@@ -13,6 +13,12 @@
 	int yyerror(const char * message);
 
 
+
+
+
+
+%}
+
 	%union {
     struct intType* int_type;
     struct expType* exp_type;
@@ -27,8 +33,6 @@
     }
 
 
-
-%}
 
 %type <statement_type> Statement
 %type <type_type> Type
