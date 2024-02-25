@@ -89,12 +89,6 @@ callType* creatCallObj(string func_name, expType* func_arg){
     return nullptr;
 }
 
-
-void initGlobalDataStructures(){
-    initSymbolTablesStack();
-    initOffsetStack();
-}
-
 void initSymbolTablesStack(){
     symbolTable tempTable;
     tempTable.push_back(symbolTableRow("print", "void", -1));
@@ -105,4 +99,9 @@ void initSymbolTablesStack(){
 
 void initOffsetStack(){
     offsetStack.push(0);
+}
+
+void initGlobalDataStructures(){
+    initSymbolTablesStack();
+    initOffsetStack();
 }
