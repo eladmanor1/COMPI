@@ -25,10 +25,10 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-int                                 {yylval.type_type = new struct typeType("int", "int"); return INT;}
-byte                                {yylval.type_type = new struct typeType("byte", "byte"); return BYTE;}
+int                                 {yylval.type_type = new struct typeType("int"); return INT;}
+byte                                {yylval.type_type = new struct typeType("byte"); return BYTE;}
 b                                   return B;
-bool                                {yylval.type_type = new struct typeType("bool", "bool"); return BOOL;}
+bool                                {yylval.type_type = new struct typeType("bool"); return BOOL;}
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;

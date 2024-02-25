@@ -70,10 +70,9 @@ struct expType{
 };
 
 struct typeType{
-    string value;
-    string type;
+    string name;
 
-    typeType(string value, string type) : value(value), type(type) {};
+    typeType(string name) : name(name) {};
 };
 
 struct typeID{

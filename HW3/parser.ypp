@@ -90,7 +90,6 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     exit(0);
                                                                     }
                                                                     if(!compareType($1->name, $4->name)){
-                                                                        if(
                                                                     }
                                                                     addSymbolTableRow($2->name, $2->type);
                                                                     $$ = new statementType($1->name);}
@@ -107,8 +106,13 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
 
 Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name,$3);
-                                                                     if(callobj == nullptr){ print("error in call object" }
-                                                                     $$ = callobj}
+                                                                     if(callobj == nullptr){
+                                                                        print("error in call object")
+                                                                     }
+                                                                     else{
+                                                                        $$ = callobj;
+                                                                     }
+                                                                     };
 
 
 Type:           INT                                                 {printProductionRule(16);}
