@@ -142,7 +142,8 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                     errorUndef(yylineno, $1->name);
                                                                     }
                                                                     $$ = new expType(getSymbolType($1->name), $1->value, true, $1->name);
-                                                                    printf("The type of the new created expression is: (inside cutting ID) %s\n", $$->type);}
+                                                                    }
+
                 | Call                                              {$$ = new expType($1->type,unionTypes((int*)nullptr),false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
                 | NUM B                                             {$$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
@@ -150,8 +151,6 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
                 | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
                 | NOT Exp                                           {if(!compareType("bool", $2->type)){
-                                                                        printf("The type of mister dog is %s\n", $2->name);
-                                                                        printf("MEOWWWWWWWWWWWWWW\n");
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
@@ -170,8 +169,22 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                         errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
-                | Exp RELATION Exp                                   {printProductionRule(31);}
-                | Exp EQUALITY Exp                                   {printProductionRule(31);}
+                | Exp RELATION Exp                                  {if (($1->type == "byte" || $1->type == "int") && ($3->type == "byte" || $3->type == "int")){
+                                                                        // I am lying here. I am doing OR, when I should be doing RELATION... lier lier pants on fire
+                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
+                                                                    }
+                                                                    else{
+                                                                        errorMismatch(yylineno);
+                                                                    }
+                                                                    }
+                | Exp EQUALITY Exp                                  {if (($1->type == "byte" || $1->type == "int") && ($3->type == "byte" || $3->type == "int")){
+                                                                    // I am lying here. I am doing OR, when I should be doing RELATION... lier lier pants on fire
+                                                                    $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
+                                                                    }
+                                                                    else{
+                                                                        errorMismatch(yylineno);
+                                                                    }
+                                                                    }
                 | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
 
 
