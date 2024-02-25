@@ -132,6 +132,7 @@ void initGlobalDataStructures();
 
 void printProductionRule(int meow);
 
+bool checkTypeWithInput
 
 
 

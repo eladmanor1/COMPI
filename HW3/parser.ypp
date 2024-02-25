@@ -129,9 +129,25 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
                 | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
                 | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
-                | NOT Exp                                           {printProductionRule(28);}
-                | Exp AND Exp                                       {printProductionRule(29);}
-                | Exp OR Exp                                        {printProductionRule(30);}
+                | NOT Exp                                           {if(!compareType("bool", $2->type)){
+                                                                        errorMismatch(lineno);
+                                                                        exit(0);
+                                                                    }
+                                                                    {$$ = new expType("bool", unionTypes(!($2->value)), false, "");}}
+                | Exp AND Exp                                       {if(compareType($1->type, $3->type) && $1->type == "bool"){
+                                                                        $$ = new expType("bool", unionTypes(($1->value && $3->value)), false, "");
+                                                                    }
+                                                                    else{
+                                                                        errorMismatch(lineno);
+                                                                        exit(0);}
+                                                                    }
+                | Exp OR Exp                                        {if(compareType($1->type, $3->type) && $1->type == "bool"){
+                                                                        $$ = new expType("bool", unionTypes(($1->value || $3->value)), false, "");
+                                                                    }
+                                                                    else{
+                                                                        errorMismatch(lineno);
+                                                                        exit(0);}
+                                                                    }
                 | Exp RELATION Exp                                   {printProductionRule(31);}
                 | Exp EQUALITY Exp                                   {printProductionRule(31);}
                 | LPAREN Type RPAREN Exp                            {printProductionRule(32);};
