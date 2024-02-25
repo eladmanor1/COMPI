@@ -50,7 +50,7 @@ continue                            return CONTINUE;
 [<>]                                return RELATION;
 [+\-]                               return ADD_SUB;
 [*/]                                return MUL_DIV;
-{letter}+[0-9a-zA-Z]*               {yylval = new typeID(yytext, unionType("none"), "none"); return ID;}
+{letter}+[0-9a-zA-Z]*               {yylval = new typeID(yytext, unionTypes("none"), "none"); return ID;}
 0                                   {yylval = new struct intType(atoi(yytext)); return NUM;}
 [1-9]+{digit}*                      {yylval = new struct intType(atoi(yytext)); return NUM;}
 \"([^\n\r\"\\]|\\[rnt"\\])+\"       {yylval = new struct stringType(yytext); return STRING;}
