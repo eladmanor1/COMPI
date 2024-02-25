@@ -15,10 +15,7 @@
 	extern vector<symbolTable> symbolTablesStack;
     extern stack<int> offsetStack;
 
-
-
-
-
+    initGlobalDataStructures();
 
 %}
 
@@ -80,7 +77,8 @@ Statements:     Statement                                           {printProduc
 Statement:      LBRACE Statements RBRACE                            {printProductionRule(4);}
 
 
-                | Type ID SC                                        {if(checkSymbolTableForSymbol($2->name)){
+                | Type ID SC                                        {printf("Statement -> Type ID SC\n");
+                                                                    if(checkSymbolTableForSymbol($2->name)){
                                                                     printf("ERRR\n");
                                                                     exit(0);
                                                                     }

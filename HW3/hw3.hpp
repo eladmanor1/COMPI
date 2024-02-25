@@ -114,9 +114,6 @@ struct symbolTableRow{
 typedef vector<symbolTableRow> symbolTable;
 
 
-
-
-
 bool checkSymbolTableForSymbol(string symbolName);
 
 
@@ -130,7 +127,7 @@ struct loserType{
 };
 
 
-
+void initGlobalDataStructures();
 
 
 void printProductionRule(int meow);

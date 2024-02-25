@@ -88,3 +88,21 @@ callType* creatCallObj(string func_name, expType* func_arg){
     }
     return nullptr;
 }
+
+
+void initGlobalDataStructures(){
+    initSymbolTablesStack();
+    initOffsetStack();
+}
+
+void initSymbolTablesStack(){
+    symbolTable tempTable;
+    tempTable.push_back(symbolTableRow("print", "void", -1));
+    tempTable.push_back(symbolTableRow("printi", "void", -1));
+    tempTable.push_back(symbolTableRow("readi", "int", -1));
+    symbolTablesStack.push_back(tempTable);
+}
+
+void initOffsetStack(){
+    offsetStack.push(0);
+}
