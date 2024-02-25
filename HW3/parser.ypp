@@ -94,7 +94,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     }
                                                                     addSymbolTableRow($2->name, $1->name);
                                                                     $$ = new statementType($1->name);
-
+                                                                    }
                 | ID ASSIGN Exp SC                                  {printProductionRule(7);}
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
