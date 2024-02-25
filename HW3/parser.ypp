@@ -81,19 +81,19 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     printf("ERRR\n");
                                                                     exit(0);
                                                                     }
-                                                                    addSymbolTableRow($2.name, $2.type);
-                                                                    $$ = new statementType($1.name);}
+                                                                    addSymbolTableRow($2->name, $2->type);
+                                                                    $$ = new statementType($1->name);}
 
 
-                | Type ID ASSIGN Exp SC                             {if(checkSymbolTableForSymbol($2.name)){
+                | Type ID ASSIGN Exp SC                             {if(checkSymbolTableForSymbol($2->name)){
                                                                     printf("ERRR\n");
                                                                     exit(0);
                                                                     }
-                                                                    if(!compareType($1.name, $4.name)){
+                                                                    if(!compareType($1->name, $4->name)){
                                                                         if(
                                                                     }
-                                                                    addSymbolTableRow($2.name, $2.type);
-                                                                    $$ = new statementType($1.name);}
+                                                                    addSymbolTableRow($2->name, $2->type);
+                                                                    $$ = new statementType($1->name);}
 
 
                 | ID ASSIGN Exp SC                                  {printProductionRule(7);}
@@ -106,7 +106,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | CONTINUE SC                                       {printProductionRule(14);};
 
 
-Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1.name,$3);
+Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name,$3);
                                                                      if(callobj == nullptr){ print("error in call object" }
                                                                      $$ = callobj}
 
@@ -117,11 +117,11 @@ Type:           INT                                                 {printProduc
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
-                | ID                                                {$$ = new expType($1.type, $1.value, true, $1.name);}
-                | Call                                              {$$ = new expType($1.type,nullptr,false}
-                | NUM                                               {$$ = new expType($1.type, $1.value, false);}
-                | NUM B                                             {$$ = new expType($1.type, $1.value, false);}
-                | STRING                                            {$$ = new expType($1.type, $1.value, false);}
+                | ID                                                {$$ = new expType($1->type, $1->value, true, $1->name);}
+                | Call                                              {$$ = new expType($1->type,nullptr,false}
+                | NUM                                               {$$ = new expType($1->type, $1->value, false);}
+                | NUM B                                             {$$ = new expType($1->type, $1->value, false);}
+                | STRING                                            {$$ = new expType($1->type, $1->value, false);}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);}
                 | NOT Exp                                           {printProductionRule(28);}
