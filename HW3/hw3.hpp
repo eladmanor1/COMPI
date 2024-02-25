@@ -132,8 +132,6 @@ void initGlobalDataStructures();
 
 void printProductionRule(int meow);
 
-bool checkTypeWithInput
-
 
 
 #endif //HW3_OUTPUT_HPP_HW3_H
