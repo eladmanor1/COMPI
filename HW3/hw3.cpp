@@ -5,6 +5,8 @@
 #include "hw3.hpp"
 #include <iostream>
 #include <stack>
+#include "hw3_output.hpp"
+
 using namespace std;
 
 

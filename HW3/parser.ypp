@@ -124,7 +124,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
 Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name, $3->type, yylineno);
                                                                      if(callobj == nullptr){
-                                                                        errorUndefFunc(lineno, $1->name);
+                                                                        errorUndefFunc(yylineno, $1->name);
                                                                         exit(0);
                                                                      }
                                                                      else{
