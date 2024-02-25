@@ -21,7 +21,9 @@
     struct stringType* string_type;
     struct typeType* type_type;
     struct callType* call_type;
-    };
+    } myUnion;
+
+    #define YYSTYPE myUnion
 
 
 
