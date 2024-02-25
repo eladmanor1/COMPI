@@ -21,7 +21,7 @@
     struct stringType*;
     struct typeType*;
     struct callType*;
-    };
+    } YYSTYPE;
 
 
 
