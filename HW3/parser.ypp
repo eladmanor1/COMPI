@@ -21,6 +21,7 @@
     struct stringType* string_type;
     struct typeType* type_type;
     struct callType* call_type;
+    struct typeID* type_ID;
     } myUnion;
 
     #define YYSTYPE myUnion
@@ -35,7 +36,7 @@
 %token <byte_type> BYTE
 %token <bool_type> BOOL
 
-%token ID
+%token <type_ID> ID
 %token SC
 %token RETURN
 
