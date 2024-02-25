@@ -107,7 +107,7 @@ void initGlobalDataStructures(){
 
 string getSymbolType(string symbolName){
     if(symbolTablesStack.empty()){
-        printf("SHITTTTT\n")
+        printf("SHITTTTT\n");
     }
 
     for(auto& currSymbolTable : symbolTablesStack){
