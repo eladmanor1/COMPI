@@ -31,10 +31,6 @@
     struct loserType* loser_type;
     }
 
-    initGlobalDataStructures();
-
-
-
 
 %type <statement_type> Statement
 %type <type_type> Type

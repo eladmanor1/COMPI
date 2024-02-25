@@ -29,8 +29,7 @@ bool checkSymbolTableForSymbol(string symbolName){
 
 void addSymbolTableRow(string name, string type){
     if(symbolTablesStack.empty()){
-        cout << "Something wrong has happened!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-        return;
+        initGlobalDataStructures();
     }
 
     int offset = offsetStack.top();
