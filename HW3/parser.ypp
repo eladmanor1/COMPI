@@ -135,14 +135,14 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                     }
                                                                     $$ = new expType("bool", unionTypes(!($2->value.boolValue)), false, "");}
                 | Exp AND Exp                                       {if(compareType($1->type, $3->type) && $1->type == "bool"){
-                                                                        $$ = new expType("bool", unionTypes(($1->value && $3->value)), false, "");
+                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue && $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
                 | Exp OR Exp                                        {if(compareType($1->type, $3->type) && $1->type == "bool"){
-                                                                        $$ = new expType("bool", unionTypes(($1->value || $3->value)), false, "");
+                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
