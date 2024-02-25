@@ -102,7 +102,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                         //change value
                                                                         $$ = new statementType($1->name);
                                                                     }
-                                                                    else if((getSymbolType($1->name) == "int" && $3->type == "byte"){
+                                                                    else if(getSymbolType($1->name) == "int" && $3->type == "byte"){
                                                                         //cast and then change value
                                                                         $$ = new statementType($1->name);
                                                                     }
