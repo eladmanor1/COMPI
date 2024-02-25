@@ -77,7 +77,7 @@ Statements:     Statement                                           {printProduc
 Statement:      LBRACE Statements RBRACE                            {printProductionRule(4);}
 
 
-                | Type ID SC                                        {if(checkSymbolTableForSymbol($2->type_ID->name)){
+                | Type ID SC                                        {if(checkSymbolTableForSymbol($2->name)){
                                                                     printf("ERRR\n");
                                                                     exit(0);
                                                                     }
