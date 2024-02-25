@@ -116,9 +116,9 @@ Call:           ID LPAREN Exp RPAREN                                {callType* c
                                                                      };
 
 
-Type:           INT                                                 $$ = new typeType("int");
-                | BYTE                                              $$ = new typeType("byte");
-                | BOOL                                              $$ = new typeType("bool");
+Type:           INT                                                 {$$ = new typeType("int");}
+                | BYTE                                              {$$ = new typeType("byte");}
+                | BOOL                                              {$$ = new typeType("bool");};
 Exp:            LPAREN Exp RPAREN                                   {printProductionRule(19);}
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
