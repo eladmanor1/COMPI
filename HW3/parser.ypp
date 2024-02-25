@@ -95,7 +95,23 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     addSymbolTableRow($2->name, $1->name);
                                                                     $$ = new statementType($1->name);
                                                                     }
-                | ID ASSIGN Exp SC                                  {printProductionRule(7);}
+                | ID ASSIGN Exp SC                                  {if(!checkSymbolTableForSymbol($1->name)){
+                                                                        errorUndef(yylineno, $1->name);
+                                                                        exit(0);}
+                                                                    if(compareType($1->type, $3->type)) {
+                                                                        //change value
+                                                                        $$ = new statementType($1->name);}
+                                                                    }
+                                                                    else if($1->type == "int" && $3->type == "byte"){
+                                                                        //cast and then change value
+                                                                        $$ = new statementType($1->name);}
+                                                                    }
+                                                                    else{
+                                                                        errorMismatch(yylineno);
+                                                                        exit(0);
+                                                                    }
+
+
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
                 | IF LPAREN Exp RPAREN Statement                    {printProductionRule(10);}
