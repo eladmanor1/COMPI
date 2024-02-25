@@ -124,7 +124,8 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
 Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name, $3->type);
                                                                      if(callobj == nullptr){
-                                                                        printf("error in call object");
+                                                                        errorUndefFunc(lineno, $1->name);
+                                                                        exit(0);
                                                                      }
                                                                      else{
                                                                         $$ = callobj;
@@ -144,7 +145,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                     $$ = new expType(getSymbolType($1->name), $1->value, true, $1->name);
                                                                     }
 
-                | Call                                              {$$ = new expType($1->type,unionTypes((int*)nullptr),false, $1->name);}
+                | Call                                              {$$ = new expType($1->type, unionTypes((int*)nullptr), false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
                 | NUM B                                             {$$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
                 | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
