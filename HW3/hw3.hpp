@@ -137,35 +137,10 @@ vector<symbolTable> symbolTablesStack;
 stack<int> offsetStack;
 
 
-bool checkSymbolTableForSymbol(string symbolName){
-    if(symbolTablesStack.empty()){
-        return false;
-    }
-
-    for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable){
-            if(currRow.name == symbolName){
-                return true;
-            }
-        }
-    }
-    return false;
-}
+bool checkSymbolTableForSymbol(string symbolName);
 
 
-void addSymbolTableRow(string name, string type){
-    if(symbolTablesStack.empty()){
-        cout << "Something wrong has happened!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-        return;
-    }
-
-    int offset = offsetStack.top();
-    offsetStack.top() += 1;
-
-    symbolTableRow rowToAdd(name, type, offset);
-
-    symbolTablesStack.back().push_back(rowToAdd);
-}
+void addSymbolTableRow(string name, string type);
 
 bool compareType(string type1, string type2){
     if (type1 == "string"){
