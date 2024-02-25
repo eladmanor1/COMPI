@@ -20,14 +20,14 @@ union unionTypes{
 
 struct intType{
     int value;
-    const string type = "int";
+    const string type;
 
     intType(int value, string type) : value(value), type(type) {};
 };
 
 struct byteType{
     byte value;
-    const string type = "byte";
+    const string type;
 
     byteType(byte value, string type) : value(value), type(type) {};
 
@@ -35,7 +35,7 @@ struct byteType{
 
 struct boolType{
     bool value;
-    const string type = "bool";
+    const string type;
 
     boolType(int value, string type) : value(value), type(type) {};
 
@@ -43,7 +43,7 @@ struct boolType{
 
 struct stringType{
     string value;
-    const string type = "string";
+    const string type;
 
     stringType(string value, string type) : value(value), type(type) {};
 
@@ -52,7 +52,7 @@ struct expType{
     string type;
     unionTypes value;
     bool is_var;
-    string name ="";
+    string name;
 
     expType(string type, unionTypes value, bool is_var, string name) : type(type), value(value), is_var(is_var), name(name) {};
 };

@@ -31,8 +31,8 @@ bool                                {yylval = new struct typeType("bool", "bool"
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
-true                                {yylval = new boolType(yytext); return TRUE};
-false                               {yylval = new boolType(yytext); return FALSE};
+true                                {yylval = new boolType(yytext); return TRUE;};
+false                               {yylval = new boolType(yytext); return FALSE;};
 return                              return RETURN;
 if                                  return IF;
 else                                return ELSE;
