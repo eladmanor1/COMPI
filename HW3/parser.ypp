@@ -127,8 +127,8 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
                 | NUM B                                             {$$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
                 | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
-                | TRUE                                              {printProductionRule(26);}
-                | FALSE                                             {printProductionRule(27);}
+                | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
+                | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
                 | NOT Exp                                           {printProductionRule(28);}
                 | Exp AND Exp                                       {printProductionRule(29);}
                 | Exp OR Exp                                        {printProductionRule(30);}

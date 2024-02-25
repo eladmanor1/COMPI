@@ -18,9 +18,9 @@ union unionTypes{
     int* ptrVal;
 
 
-    unionTypes(int intValue) : intValue(intValue) {};
-    unionTypes(bool boolValue) : boolValue(boolValue) {};
-    unionTypes(byte byteValue) : byteValue(byteValue) {};
+    explicit unionTypes(int intValue) : intValue(intValue) {};
+    explicit unionTypes(bool boolValue) : boolValue(boolValue) {};
+    explicit unionTypes(byte byteValue) : byteValue(byteValue) {};
     unionTypes(int* ptrVal) : ptrVal(ptrVal) {};
     unionTypes(string* stringValue) : stringValue(stringValue) {};
 
