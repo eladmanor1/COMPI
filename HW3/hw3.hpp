@@ -28,9 +28,11 @@ union unionTypes{
 
 struct intType{
     int value;
-    static const string type;
+    string type;
 
-    intType(int value) : value(value) {};
+    intType(int value) : value(value) {
+        type = "int";
+    };
 };
 
 struct byteType{
