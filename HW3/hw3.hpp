@@ -57,7 +57,7 @@ struct stringType{
     string value;
     static const string type;
 
-    stringType(string value) : value(value) type("string") {};
+    stringType(string value) : value(value), type("string") {};
 
 };
 struct expType{
