@@ -93,7 +93,8 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                         exit(0);
                                                                     }
                                                                     addSymbolTableRow($2->name, $1->name);
-                                                                    $$ = new statementType($1->name);}
+                                                                    $$ = new statementType($1->name);
+                                                                    printf("The type of the new created expression is: (inside cutting ID) %s\n", $$->type);}
 
 
                 | ID ASSIGN Exp SC                                  {printProductionRule(7);}
@@ -123,7 +124,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {$$ = new expType($1->type, $1->value, true, $1->name);
-                                                                    printf("The type of the new created expression is: %s\n", $$->type);}
+                                                                    printf("The type of the new created expression is: (inside cutting ID) %s\n", $$->type);}
                 | Call                                              {$$ = new expType($1->type,unionTypes((int*)nullptr),false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
                 | NUM B                                             {$$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
