@@ -25,15 +25,15 @@ xd                                  (x[a-fA-F0-9])
 
 
 %%
-int                                 {yylval = new  struct typeType("int", "int"); return INT;}
-byte                                {yylval = new struct typeType("byte", "byte"); return BYTE;}
+int                                 {yylval.type_type = new struct typeType("int", "int"); return INT;}
+byte                                {yylval.type_type = new struct typeType("byte", "byte"); return BYTE;}
 b                                   return B;
-bool                                {yylval = new struct typeType("bool", "bool"); return BOOL;}
+bool                                {yylval.type_type = new struct typeType("bool", "bool"); return BOOL;}
 and                                 return AND;
 or                                  return OR;
 not                                 return NOT;
-true                                {yylval = new boolType(true, yytext); return TRUE;};
-false                               {yylval = new boolType(false, yytext); return FALSE;};
+true                                {yylval.bool_type = new boolType(true, yytext); return TRUE;};
+false                               {yylval.bool_type = new boolType(false, yytext); return FALSE;};
 return                              return RETURN;
 if                                  return IF;
 else                                return ELSE;
@@ -51,10 +51,10 @@ continue                            return CONTINUE;
 [<>]                                return RELATION;
 [+\-]                               return ADD_SUB;
 [*/]                                return MUL_DIV;
-{letter}+[0-9a-zA-Z]*               {yylval = new typeID(yytext, unionTypes("none"), "none"); return ID;}
-0                                   {yylval = new struct intType(atoi(yytext)); return NUM;}
-[1-9]+{digit}*                      {yylval = new struct intType(atoi(yytext)); return NUM;}
-\"([^\n\r\"\\]|\\[rnt"\\])+\"       {yylval = new struct stringType(yytext); return STRING;}
+{letter}+[0-9a-zA-Z]*               {yylval.type_ID = new typeID(yytext, unionTypes("none"), "none"); return ID;}
+0                                   {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
+[1-9]+{digit}*                      {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
+\"([^\n\r\"\\]|\\[rnt"\\])+\"       {yylval.string_type = new struct stringType(yytext); return STRING;}
 "/""/"[^\r\n]*[\r|\n|\r\n]?         ;
 {whitespace}                        ;
 .		                            {output::errorLex(yylineno); exit(0);}
