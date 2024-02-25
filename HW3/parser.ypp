@@ -14,20 +14,24 @@
 
 
 	%union {
-    struct intType*;
-    struct expType*;
-    struct byteType*;
-    struct boolType*;
-    struct stringType*;
-    struct typeType*;
-    struct callType*;
-    } YYSTYPE;
+    struct intType* int_type;
+    struct expType* exp_type;
+    struct byteType* byte_type;
+    struct boolType* bool_type;
+    struct stringType* string_type;
+    struct typeType* type_type;
+    struct callType* call_type;
+    };
 
 
 
 %}
 
-%token INT BYTE BOOL CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
+%token CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
+
+%token <int_type> INT
+%token <byte_type> BYTE
+%token <bool_type> BOOL
 
 %token ID
 %token SC
