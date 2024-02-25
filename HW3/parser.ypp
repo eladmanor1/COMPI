@@ -38,7 +38,8 @@
 %type <exp_type> Exp
 
 
-%token <loser_type> CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
+%token <loser_type> CONST TRUE FALSE IF WHILE BREAK CONTINUE ASSIGN
+%token <string_type> STRING
 
 %token <int_type> INT
 %token <byte_type> BYTE
@@ -48,8 +49,8 @@
 %token <loser_type> SC
 %token RETURN
 
-%nonassoc NUM
-%nonassoc B
+%nonassoc <num_type> NUM
+%nonassoc <loser_type> B
 
 %right ASSIGN
 
