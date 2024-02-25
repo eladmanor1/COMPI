@@ -130,7 +130,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
                 | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
                 | NOT Exp                                           {if(!compareType("bool", $2->type)){
-                                                                        errorMismatch(lineno);
+                                                                        errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     {$$ = new expType("bool", unionTypes(!($2->value)), false, "");}}
@@ -138,14 +138,14 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                         $$ = new expType("bool", unionTypes(($1->value && $3->value)), false, "");
                                                                     }
                                                                     else{
-                                                                        errorMismatch(lineno);
+                                                                        errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
                 | Exp OR Exp                                        {if(compareType($1->type, $3->type) && $1->type == "bool"){
                                                                         $$ = new expType("bool", unionTypes(($1->value || $3->value)), false, "");
                                                                     }
                                                                     else{
-                                                                        errorMismatch(lineno);
+                                                                        errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
                 | Exp RELATION Exp                                   {printProductionRule(31);}
