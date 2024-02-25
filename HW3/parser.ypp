@@ -107,7 +107,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
 Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name,$3);
                                                                      if(callobj == nullptr){
-                                                                        print("error in call object")
+                                                                        printf("error in call object")
                                                                      }
                                                                      else{
                                                                         $$ = callobj;
@@ -122,7 +122,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Exp ADD_SUB Exp                                   {printProductionRule(20);}
                 | Exp MUL_DIV Exp                                   {printProductionRule(20);}
                 | ID                                                {$$ = new expType($1->type, $1->value, true, $1->name);}
-                | Call                                              {$$ = new expType($1->type,nullptr,false}
+                | Call                                              {$$ = new expType($1->type,nullptr,false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, $1->value, false);}
                 | NUM B                                             {$$ = new expType($1->type, $1->value, false);}
                 | STRING                                            {$$ = new expType($1->type, $1->value, false);}

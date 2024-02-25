@@ -85,8 +85,9 @@ struct typeID{
 
 struct callType{
     string type;
+    string name;
 
-    callType(string type) : type(type) {};
+    callType(string type, string name) : type(type), name(name) {};
 };
 //comment
 callType* creatCallObj(string func_name, expType* func_arg){
@@ -95,17 +96,17 @@ callType* creatCallObj(string func_name, expType* func_arg){
     if(func_name=="print") {
         if (func_arg->type != "string")
             return nullptr;
-        return (new callType("void"));
+        return (new callType("void", func_name));
     }
     if(func_name=="printi") {
         if(func_arg->type != "int")
             return nullptr;
-        return (new callType("void"));
+        return (new callType("void",func_name));
     }
     if(func_name=="readi") {
         if(func_arg->type != "int")
             return nullptr;
-        return (new callType("int"));
+        return (new callType("int",func_name));
     }
     return nullptr;
 }
@@ -192,6 +193,9 @@ struct loserType{
 
 
 
+void printProductionRule(int meow){
+    meow++;
+}
 
 
 
