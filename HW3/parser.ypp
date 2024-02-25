@@ -23,6 +23,7 @@
     struct callType* call_type;
     struct typeID* type_ID;
     struct statementType* statement_type;
+    struct loserType* loser_type;
     } myUnion;
 
     #define YYSTYPE myUnion
@@ -31,16 +32,20 @@
 
 %}
 
-%type<statement_type> Statement
+%type <statement_type> Statement
+%type <type_type> Type
+%type <call_type> Call
+%type <exp_type> Exp
 
-%token CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
+
+%token <loser_type> CONST TRUE FALSE IF WHILE BREAK CONTINUE STRING ASSIGN
 
 %token <int_type> INT
 %token <byte_type> BYTE
 %token <bool_type> BOOL
 
 %token <type_ID> ID
-%token SC
+%token <loser_type> SC
 %token RETURN
 
 %nonassoc NUM
