@@ -125,7 +125,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | Call                                              {$$ = new expType($1->type,unionTypes((int*)nullptr),false, $1->name);}
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
                 | NUM B                                             {printf("meow\n");}
-                | STRING                                            {$$ = new expType($1->type, unionTypes($1->value), false, "");}
+                | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
                 | TRUE                                              {printProductionRule(26);}
                 | FALSE                                             {printProductionRule(27);}
                 | NOT Exp                                           {printProductionRule(28);}
