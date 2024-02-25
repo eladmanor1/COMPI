@@ -130,6 +130,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
                 | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
                 | NOT Exp                                           {if(!compareType("bool", $2->type)){
+                                                                        printf("The type of mister dog is %s\n", $2->type);
                                                                         printf("MEOWWWWWWWWWWWWWW\n");
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
