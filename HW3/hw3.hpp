@@ -35,9 +35,13 @@ struct byteType{
 
 struct boolType{
     bool value;
-    const string type;
+    string type;
 
     boolType(int value, string type) : value(value), type(type) {};
+    boolType(int value, char* type) : value(value) {
+        this->type = type;
+    };
+
 
 };
 
