@@ -15,7 +15,6 @@
 	extern vector<symbolTable> symbolTablesStack;
     extern stack<int> offsetStack;
 
-    initGlobalDataStructures();
 
 %}
 
@@ -31,6 +30,9 @@
     struct statementType* statement_type;
     struct loserType* loser_type;
     }
+
+    initGlobalDataStructures();
+
 
 
 
