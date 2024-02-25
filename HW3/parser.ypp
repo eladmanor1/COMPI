@@ -132,8 +132,8 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                 | NOT Exp                                           {if(!compareType("bool", $2->type)){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
-                                                                    }}
-                                                                    {$$ = new expType("bool", unionTypes(!($2->value)), false, "");}}
+                                                                    }
+                                                                    $$ = new expType("bool", unionTypes(!($2->value)), false, "");}
                 | Exp AND Exp                                       {if(compareType($1->type, $3->type) && $1->type == "bool"){
                                                                         $$ = new expType("bool", unionTypes(($1->value && $3->value)), false, "");
                                                                     }
