@@ -102,13 +102,6 @@ struct statementType{
 };
 
 
-
-
-
-
-
-
-
 bool compareType(string type1, string type2);
 
 struct loserType{
@@ -116,15 +109,11 @@ struct loserType{
     loserType(string name) : name(name) {};
 };
 
-
-
-
 void printProductionRule(int meow);
 
 
 /** type is the type conversion, type 2 is the orginal type, val2 is the val being converted*/
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno);
-
 
 
 /** Data structures */
@@ -160,17 +149,10 @@ void addSymbolTableRow(string name, string type);
 
 bool compareType(string type1, string type2);
 
-struct loserType{
-    string name;
-    loserType(string name) : name(name) {};
-};
-
-
 struct binopType{
     string name;
     binopType(string name) : name(name) {};
 };
-
 
 void initGlobalDataStructures();
 
@@ -179,6 +161,6 @@ void printProductionRule(int meow);
 
 bool isNumber(expType* exp);
 
-expType* createBinExp(expType* Bexp , binType* Op , expType* Aexp , int lineno);
+expType* createBinExp(expType* Bexp , binopType* Op , expType* Aexp , int lineno);
 
 #endif //HW3_OUTPUT_HPP_HW3_H

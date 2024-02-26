@@ -29,7 +29,7 @@
     struct typeID* type_ID;
     struct statementType* statement_type;
     struct loserType* loser_type;
-    struct binopType* binop_Type;
+    struct binopType* binop_type;
     }
 
 
