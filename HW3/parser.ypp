@@ -36,8 +36,10 @@
 %type <statement_type> Statement
 %type <type_type> Type
 %type <call_type> Call
-%type <exp_type> checkIfBool
+
 %type <exp_type> Exp
+%type <exp_type> checkIfBool
+
 
 %token <int_type> INT
 %token <byte_type> BYTE
