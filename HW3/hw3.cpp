@@ -139,8 +139,8 @@ string getSymbolType(string symbolName){
     return "error and im crazy";
 }
 
-bool isNumber(expType* exp){
-    if(exp->type == "byte" || exp->type == "int")
+bool isNumber(string type){
+    if(type == "byte" || type == "int")
         return true;
     return false;
 }
@@ -178,6 +178,7 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         } else if(Aexp->type == "byte") {
             return (new expType(Bexp->type,unionTypes(res_byte),false,""));
         }
+        return nullptr;
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){

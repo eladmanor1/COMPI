@@ -159,7 +159,7 @@ void initGlobalDataStructures();
 
 void printProductionRule(int meow);
 
-bool isNumber(expType* exp);
+bool isNumber(strung type);
 
 expType* createBinExp(expType* Bexp , binopType* Op , expType* Aexp , int lineno);
 
