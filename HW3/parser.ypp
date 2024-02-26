@@ -39,21 +39,31 @@
 %type <exp_type> checkIfBool
 %type <exp_type> Exp
 
-
-%nonassoc <loser_type> CONST TRUE FALSE IF WHILE BREAK
-%token <string_type> STRING
-
 %token <int_type> INT
 %token <byte_type> BYTE
 %token <bool_type> BOOL
 
-%token <type_ID> ID
-%token <loser_type> SC
-%token RETURN
+%nonassoc<loser_type> CONST
+%nonassoc<loser_type> IF
+%nonassoc<loser_type> RETURN
+%nonassoc<loser_type> WHILE
+%nonassoc<loser_type> BREAK
+%nonassoc<loser_type> CONTINUE
+%nonassoc <loser_type> SC
+%nonassoc <type_ID> ID
 
-%nonassoc <int_type> NUM
 %nonassoc <loser_type> B
-%nonassoc <loser_type> CONTINUE
+%nonassoc <int_type> NUM
+
+
+%nonassoc <loser_type> TRUE FALSE
+%nonassoc <string_type> STRING
+
+
+
+
+
+
 
 %right ASSIGN
 
