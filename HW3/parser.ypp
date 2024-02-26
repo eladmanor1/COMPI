@@ -129,7 +129,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
 
-                | IF LPAREN checkIfBool RPAREN {createScope("if")} Statement                    {
+                | IF LPAREN checkIfBool RPAREN {createScope("if");} Statement                    {
 
                                                                     popScope();
                                                                     $$ = new statementType("meow");
@@ -253,13 +253,13 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                     }
                                                                     $$ = new expType($2->name, convertIntAndByte($2->name, $4->name, $4->value, yylineno), $4->is_var, $4->name);
                 }
-checkIfBool:    Exp                                                 {if($1=>type != "bool"){
+checkIfBool:    Exp                                                 {if($1->type != "bool"){
                                                                          errorMismatch(yylineno);
                                                                          exit(0);
                                                                     }
                                                                     else{
                                                                     $$ = $1;}
-                                                                    }
+                                                                    };
 
 
 

@@ -227,12 +227,13 @@ void createScope(string context){
 }
 
 bool checkIfFunc(string name){
-    if((name == "print") || (name == "printi") || (name = "readi")){
+    if((name == "print") || (name == "printi") || (name == "readi")){
         return true;
     }
     else{
         return false;
     }
+    return false;
 }
 
 string getFuncArgType(string name){
@@ -240,7 +241,7 @@ string getFuncArgType(string name){
         return "string";
     }
     else if(name == "printi" || name == "readi"){
-        return "int"
+        return "int";
     }
     else{
         return "ERRRORRR!!!!!!";
