@@ -158,8 +158,8 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         int res_int;
         byte res_byte;
             if (Op->name == "+") {
-                res_int = (int)Aexp->value + (int)Bexp->value;
-                res_byte = (byte)Aexp->value + (byte)Bexp->value;
+                res_int = Aexp->value.intValue + Bexp->value.intValue;
+                res_byte = Aexp->value.byteValue + Bexp->value.byteValue;
             }
             if (Op->name == "-") {
                 res_int = (int)Aexp->value - (int)Bexp->value;
