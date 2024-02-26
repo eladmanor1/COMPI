@@ -92,7 +92,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
-                                                                    addSymbolTableRow($2->name, $1->name);
+                                                                    addSymbolTableRow($2->name, $1->name, unionTypes($4->value));
                                                                     $$ = new statementType($1->name);
                                                                     }
                 | ID ASSIGN Exp SC                                  {if(!checkSymbolTableForSymbol($1->name)){
@@ -196,7 +196,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
-                                                                    $$ = new expType($2->name, convertIntAndByte($2->name, $4->name, $4->value, lineno), $4->is_var, $4->name);
+                                                                    $$ = new expType($2->name, convertIntAndByte($2->name, $4->name, $4->value, yylineno), $4->is_var, $4->name);
                 }
 
 
