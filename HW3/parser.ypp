@@ -116,9 +116,36 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
 
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
-                | IF LPAREN Exp RPAREN Statement                    {printProductionRule(10);}
-                | IF LPAREN Exp RPAREN Statement ELSE Statement     {printProductionRule(11);}
-                | WHILE LPAREN Exp RPAREN Statement                 {printProductionRule(12);}
+
+                | IF LPAREN Exp RPAREN Statement                    {
+                                                                    if($3->type != "bool"){
+                                                                        errorMismatch(yylineno);
+                                                                        exit(0);
+                                                                    }
+
+
+
+
+
+
+                                                                    }
+
+                | IF LPAREN Exp RPAREN Statement ELSE Statement     {
+                                                                    if($3->type != "bool"){
+                                                                        errorMismatch(yylineno);
+                                                                        exit(0);
+                                                                    }
+                                                                    }
+
+                | WHILE LPAREN Exp RPAREN Statement                 {
+                                                                    if($3->type != "bool"){
+                                                                    errorMismatch(yylineno);
+                                                                    exit(0);}
+                                                                    }
+
+
+
+
                 | BREAK SC                                          {printProductionRule(13);}
                 | CONTINUE SC                                       {printProductionRule(14);};
 
@@ -161,8 +188,15 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                     }
 
                 | Call                                              {$$ = new expType($1->type, unionTypes((int*)nullptr), false, $1->name);}
+
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
-                | NUM B                                             {$$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
+
+                | NUM B                                             {if($1->value > 255){
+                                                                        errorByteTooLarge(yylineno, $1->value);
+                                                                        exit(0);
+                                                                    }
+                                                                    $$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
+
                 | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
                 | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
                 | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
