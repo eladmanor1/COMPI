@@ -135,7 +135,7 @@ struct symbolTableRow{
     unionTypes value;
     int offset;
 
-    symbolTableRow(string name, string type, int offset) : name(name), type(type),value(value), offset(offset) {};
+    symbolTableRow(string name, string type, unionTypes value, int offset) : name(name), type(type), value(value), offset(offset) {};
 };
 
 struct symbolTable {
