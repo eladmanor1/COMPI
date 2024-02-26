@@ -143,8 +143,8 @@ struct symbolTable {
     string context;
 
     symbolTable(){};
-    symbolTAble(string context) : context(context) {};
-}
+    symbolTable(string context) : context(context) {};
+};
 
 void addSymbolTableRow(string name, string type, unionTypes value);
 
