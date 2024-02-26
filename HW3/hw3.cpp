@@ -162,7 +162,7 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
             res = unionTypes(Aexp->value - Bexp->value);
         }
         if(Op == "*"){
-            res = unionTypes(Aexp->value *Bexp->value);
+            res = unionTypes(Aexp->value * Bexp->value);
         }
         if(Op == "/") {
             res = unionTypes(Aexp->value / Bexp->value);
