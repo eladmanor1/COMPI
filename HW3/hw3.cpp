@@ -166,7 +166,8 @@ unionTypes giveTrashValue(string type){
         return unionTypes(false);
     }
     else if(type == "byte"){
-        return unionTypes((byte)0);
+        byte meow = (byte)0;
+        return unionTypes(meow);
     }
     else{
         return unionTypes(0);
