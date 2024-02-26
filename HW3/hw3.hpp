@@ -154,5 +154,7 @@ bool checkSymbolTableForSymbol(string symbolName);
 
 string getSymbolType(string symbolName);
 
+unionTypes giveTrashValue(string type);
+
 
 #endif //HW3_OUTPUT_HPP_HW3_H

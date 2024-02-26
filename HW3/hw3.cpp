@@ -156,3 +156,21 @@ unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int li
         return unionTypes(val2.byteValue);
     }
 }
+
+
+unionTypes giveTrashValue(string type){
+    if (type == "string"){
+        return unionType("");
+    }
+    else if(type == "bool"){
+        return unionTypes(false);
+    }
+    else if(type == "byte"){
+        byte meow = 0;
+        return unionTypes(meow);
+    }
+    else{
+        return unionTypes(0);
+    }
+}
+
