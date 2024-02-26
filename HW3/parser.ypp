@@ -192,7 +192,7 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                 | NUM                                               {$$ = new expType($1->type, unionTypes($1->value), false, "");}
 
                 | NUM B                                             {if($1->value > 255){
-                                                                        errorByteTooLarge(yylineno, $1->value);
+                                                                        errorByteTooLarge(yylineno, to_string($1->value));
                                                                         exit(0);
                                                                     }
                                                                     $$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
