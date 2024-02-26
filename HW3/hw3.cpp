@@ -160,13 +160,13 @@ unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int li
 
 unionTypes giveTrashValue(string type){
     if (type == "string"){
-        return unionType("");
+        return unionTypes("");
     }
     else if(type == "bool"){
         return unionTypes(false);
     }
     else if(type == "byte"){
-        byte meow = 0;
+        byte meow = 0b;
         return unionTypes(meow);
     }
     else{
