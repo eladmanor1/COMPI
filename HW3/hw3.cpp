@@ -155,19 +155,32 @@ bool isNumber(expType* exp){
 
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //here we already know that Bexp->type == Aexp->type
-        if(Op == "+"){
-            res = unionTypes(Aexp->value + Bexp->value);
+        int res_int;
+        byte res_byte;
+            if (Op->name == "+") {
+                res_int = (int)Aexp->value + (int)Bexp->value;
+                res_byte = (byte)Aexp->value + (byte)Bexp->value;
+            }
+            if (Op->name == "-") {
+                res_int = (int)Aexp->value - (int)Bexp->value;
+                res_byte = (byte)Aexp->value - (byte)Bexp->value;
+            }
+            if (Op->name == "*") {
+                res_int = (int)Aexp->value * (int)Bexp->value;
+                res_byte = (byte)Aexp->value * (byte)Bexp->value;
+            }
+            if (Op->name == "/") {
+                res_int = (int)Aexp->value / (int)Bexp->value;
+                res_byte = (byte)Aexp->value / (byte)Bexp->value;
+            }
+
+            if(Aexp->type == "int"){
+                res = unionTypes(res_int);
+            } else if(Aexp->type == "byte") {
+                res = unionTypes(res_byte);
+            }
+            return (new expType(Bexp->type,res,false,""));
         }
-        if(Op == "-") {
-            res = unionTypes(Aexp->value - Bexp->value);
-        }
-        if(Op == "*"){
-            res = unionTypes(Aexp->value * Bexp->value);
-        }
-        if(Op == "/") {
-            res = unionTypes(Aexp->value / Bexp->value);
-         }
-        return (new expType(Bexp->type,res,false,""));
     }
 
 }
