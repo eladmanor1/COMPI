@@ -10,7 +10,7 @@
 using namespace std;
 using namespace output;
 
-
+#define MAX_BYTE 255
 
 vector<symbolTable> symbolTablesStack;
 stack<int> offsetStack;
@@ -128,4 +128,37 @@ string getSymbolType(string symbolName){
         }
     }
     return "error and im crazy";
+}
+
+bool isNumber(expType* exp){
+    if(exp->type == "byte" || exp->type == "int")
+        return true;
+    return false;
+}
+//
+//void  checkForOversize(int res, int lineno){
+//    if (res >= MAX_BYTE){
+//        errorByteTooLarge(res,lineno);
+//        exit(0);
+//    }
+//}
+
+
+expType* createBinExp(expType* Aexp , binType* Op , expType* Bexp){
+    //here we already know that Bexp->type == Aexp->type
+        if(Op == "+"){
+            res = unionTypes(Aexp->value + Bexp->value);
+        }
+        if(Op == "-") {
+            res = unionTypes(Aexp->value - Bexp->value);
+        }
+        if(Op == "*"){
+            res = unionTypes(Aexp->value *Bexp->value);
+        }
+        if(Op == "/") {
+            res = unionTypes(Aexp->value / Bexp->value);
+         }
+        return (new expType(Bexp->type,res,false,""));
+    }
+
 }

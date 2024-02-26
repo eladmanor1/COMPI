@@ -130,11 +130,19 @@ struct loserType{
 };
 
 
+struct binopType{
+    string name;
+    binopType(string name) : name(name) {};
+};
+
+
 void initGlobalDataStructures();
 
 
 void printProductionRule(int meow);
 
+bool isNumber(expType* exp);
 
+expType* createBinExp(expType* Bexp , binType* Op , expType* Aexp , int lineno);
 
 #endif //HW3_OUTPUT_HPP_HW3_H

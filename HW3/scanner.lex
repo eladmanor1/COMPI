@@ -49,8 +49,8 @@ continue                            return CONTINUE;
 [!=]=                               return EQUALITY;
 [<>]=                               return RELATION;
 [<>]                                return RELATION;
-[+\-]                               return ADD_SUB;
-[*/]                                return MUL_DIV;
+[+\-]                               {yylval.binop_type = new binopType(yytext); return ADD_SUB;}
+[*/]                                {yylval.binop_type = new binopType(yytext);  return MUL_DIV;}
 {letter}+[0-9a-zA-Z]*               {yylval.type_ID = new typeID(yytext, unionTypes(new string("none")), "none"); return ID;}
 0                                   {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
 [1-9]+{digit}*                      {yylval.int_type = new struct intType(atoi(yytext)); return NUM;}
