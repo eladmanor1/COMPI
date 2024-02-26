@@ -162,16 +162,16 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
                 res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
             }
             if (Op->name == "-") {
-                res_int = (int)Aexp->value - (int)Bexp->value;
-                res_byte = (byte)Aexp->value - (byte)Bexp->value;
+                res_int = Aexp->value.intValue - Bexp->value.intValue;
+                res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
             }
             if (Op->name == "*") {
-                res_int = (int)Aexp->value * (int)Bexp->value;
-                res_byte = (byte)Aexp->value * (byte)Bexp->value;
+                res_int = Aexp->value.intValue * Bexp->value.intValue;
+                res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
             }
             if (Op->name == "/") {
-                res_int = (int)Aexp->value / (int)Bexp->value;
-                res_byte = (byte)Aexp->value / (byte)Bexp->value;
+                res_int = Aexp->value.intValue / Bexp->value.intValue;
+                res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
             }
 
             if(Aexp->type == "int"){
