@@ -216,3 +216,58 @@ unionTypes giveTrashValue(string type){
     }
 }
 
+
+void createScope(string context){
+    symbolTable newTable(context);
+    symbolTablesStack.push_back(newTable);
+
+    //creating a new level and putting in the highest level same value, seems weird but that's how the stack is used
+    int temp = offsetStack.top();
+    offsetStack.push(temp);
+}
+
+bool checkIfFunc(string name){
+    if((name == "print") || (name == "printi") || (name = "readi")){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+string getFuncArgType(string name){
+    if(name == "print"){
+        return "string";
+    }
+    else if(name == "printi" || name == "readi"){
+        return "int"
+    }
+    else{
+        return "ERRRORRR!!!!!!";
+    }
+}
+
+
+void popScope(){
+    endScope();
+    symbolTable currTable = symbolTablesStack.back();
+
+    //do the prints
+    for(auto & currRow : currTable.table){
+        bool isFunc = checkIfFunc(currRow.name);
+        if(!isFunc){
+            printID(currRow.name, currRow.offset, currRow.type);
+        }
+        else{
+            string funcArgType = getFuncArgType(currRow.name);
+            printID(currRow.name, currRow.offset, makeFunctionType(funcArgType, currRow.type));
+        }
+    }
+
+    //pop the data structures!
+    symbolTablesStack.pop_back();
+    offsetStack.pop();
+}
+
+
+

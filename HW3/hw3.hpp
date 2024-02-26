@@ -157,10 +157,22 @@ struct binopType{
 void initGlobalDataStructures();
 
 
+
+
+
+
+/** --------------------------------------------------------MISC-------------------------------------------------------- */
+
+
 void printProductionRule(int meow);
 
 bool isNumber(string type);
 
 expType* createBinExp(expType* Bexp , binopType* Op , expType* Aexp);
+
+void createScope(string context);
+
+void popScope();
+
 
 #endif //HW3_OUTPUT_HPP_HW3_H
