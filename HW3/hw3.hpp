@@ -161,6 +161,6 @@ void printProductionRule(int meow);
 
 bool isNumber(string type);
 
-expType* createBinExp(expType* Bexp , binopType* Op , expType* Aexp , int lineno);
+expType* createBinExp(expType* Bexp , binopType* Op , expType* Aexp);
 
 #endif //HW3_OUTPUT_HPP_HW3_H
