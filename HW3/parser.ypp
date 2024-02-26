@@ -126,7 +126,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
 
-                | IF LPAREN Exp RPAREN {createScope("if");} Statement                    {
+                | IF LPAREN Exp RPAREN Statement                    {
 
                                                                     popScope();
                                                                     $$ = new statementType("meow");
