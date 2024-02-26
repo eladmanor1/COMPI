@@ -153,7 +153,7 @@ bool isNumber(expType* exp){
 //}
 
 
-expType* createBinExp(expType* Aexp , binType* Op , expType* Bexp){
+expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //here we already know that Bexp->type == Aexp->type
         if(Op == "+"){
             res = unionTypes(Aexp->value + Bexp->value);
