@@ -60,8 +60,8 @@
 %left EQUALITY
 %left RELATION
 
-%left <binop_Type> ADD_SUB
-%left <binop_Type> MUL_DIV
+%left <binop_type> ADD_SUB
+%left <binop_type> MUL_DIV
 
 %right NOT
 %left LPAREN RPAREN LBRACE RBRACE
