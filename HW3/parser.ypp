@@ -188,7 +188,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                         exit(0);
                                                                     }
                                                                     }
-                | LPAREN Type RPAREN Exp                            {if($2->type != "int" && $2->type != "byte"){
+                | LPAREN Type RPAREN Exp                            {if($2->name != "int" && $2->name != "byte"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
@@ -196,7 +196,7 @@ Exp:            LPAREN Exp RPAREN                                   {printProduc
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
-                                                                    $$ = new expType($1->type, convertIntAndByte($1->type, $4->name, $4->value, lineno), $4->is_var, $4->name);
+                                                                    $$ = new expType($2->name, convertIntAndByte($2->name, $4->name, $4->value, lineno), $4->is_var, $4->name);
                 }
 
 
