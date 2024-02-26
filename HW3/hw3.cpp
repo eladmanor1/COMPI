@@ -21,7 +21,7 @@ bool checkSymbolTableForSymbol(string symbolName){
     }
 
     for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable){
+        for(auto& currRow : currSymbolTable.table){
             if(currRow.name == symbolName){
                 return true;
             }
@@ -130,7 +130,7 @@ string getSymbolType(string symbolName){
     }
 
     for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable){
+        for(auto& currRow : currSymbolTable.table){
             if(currRow.name == symbolName){
                 return currRow.type;
             }
