@@ -31,7 +31,7 @@ bool checkSymbolTableForSymbol(string symbolName){
 }
 
 
-void addSymbolTableRow(string name, string type){
+void addSymbolTableRow(string name, string type, unionTypes value){
     if(symbolTablesStack.empty()){
         initGlobalDataStructures();
     }
@@ -39,7 +39,7 @@ void addSymbolTableRow(string name, string type){
     int offset = offsetStack.top();
     offsetStack.top() += 1;
 
-    symbolTableRow rowToAdd(name, type, offset);
+    symbolTableRow rowToAdd(name, type, value, offset);
 
     symbolTablesStack.back().push_back(rowToAdd);
 }
@@ -100,14 +100,23 @@ callType* creatCallObj(string func_name, string type, int lineno){
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.push_back(symbolTableRow("print", "void", -1));
-    tempTable.push_back(symbolTableRow("printi", "void", -1));
-    tempTable.push_back(symbolTableRow("readi", "int", -1));
+    tempTable.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), -1));
+    tempTable.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), -1));
+    tempTable.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), -1));
+    tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
 
 void initOffsetStack(){
     offsetStack.push(0);
+}
+
+void addSymbolTable(string context){
+    symbolTable tempTable(context);
+    int tempValue = offsetStack.top();
+
+    symbolTablesStack.push_back(tempTable);
+    offsetStack.push(tempValue);
 }
 
 void initGlobalDataStructures(){
@@ -128,4 +137,22 @@ string getSymbolType(string symbolName){
         }
     }
     return "error and im crazy";
+}
+
+
+unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
+    if(type1 == "int" && type2 == "int"){
+        return unionTypes(val2.intValue);
+    }
+    else if(type1 == "int" && type2 == "byte"){
+        return unionTypes((int)val2.byteValue);
+    }
+    else if(type1 == "byte" && type2 == "int"){
+        byte temp = (byte)(val2.intValue);
+        return unionTypes(temp);
+    }
+    /** byte and byte */
+    else{
+        return unionTypes(val2.byteValue);
+    }
 }
