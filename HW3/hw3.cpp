@@ -157,32 +157,27 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //here we already know that Bexp->type == Aexp->type
         int res_int;
         byte res_byte;
-            if (Op->name == "+") {
-                res_int = Aexp->value.intValue + Bexp->value.intValue;
-                res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
-            }
-            if (Op->name == "-") {
-                res_int = Aexp->value.intValue - Bexp->value.intValue;
-                res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
-            }
-            if (Op->name == "*") {
-                res_int = Aexp->value.intValue * Bexp->value.intValue;
-                res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
-            }
-            if (Op->name == "/") {
-                res_int = Aexp->value.intValue / Bexp->value.intValue;
-                res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
-            }
-
-            if(Aexp->type == "int"){
-                res = unionTypes(res_int);
-            } else if(Aexp->type == "byte") {
-                res = unionTypes(res_byte);
-            }
-            return (new expType(Bexp->type,res,false,""));
+        if (Op->name == "+") {
+            res_int = Aexp->value.intValue + Bexp->value.intValue;
+            res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
         }
-    }
-
+        if (Op->name == "-") {
+            res_int = Aexp->value.intValue - Bexp->value.intValue;
+            res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
+        }
+        if (Op->name == "*") {
+            res_int = Aexp->value.intValue * Bexp->value.intValue;
+            res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
+        }
+        if (Op->name == "/") {
+            res_int = Aexp->value.intValue / Bexp->value.intValue;
+            res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
+        }
+        if(Aexp->type == "int"){
+            return (new expType(Bexp->type,unionTypes(res_int),false,""));
+        } else if(Aexp->type == "byte") {
+            return (new expType(Bexp->type,unionTypes(res_byte),false,""));
+        }
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
