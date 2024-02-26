@@ -183,6 +183,7 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                       }
                 | ID                                                {if(!checkSymbolTableForSymbol($1->name)){
                                                                     errorUndef(yylineno, $1->name);
+                                                                    exit(0);
                                                                     }
                                                                     $$ = new expType(getSymbolType($1->name), $1->value, true, $1->name);
                                                                     }
