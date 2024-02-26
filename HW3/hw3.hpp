@@ -102,23 +102,59 @@ struct statementType{
 };
 
 
-struct symbolTableRow{
-    string name;
-    string type;
-//    unionTypes value;
-    int offset;
 
-    symbolTableRow(string name, string type, int offset) : name(name), type(type), offset(offset) {};
+
+
+
+
+
+
+bool compareType(string type1, string type2);
+
+struct loserType{
+    string name;
+    loserType(string name) : name(name) {};
 };
 
 
-typedef vector<symbolTableRow> symbolTable;
 
+
+void printProductionRule(int meow);
+
+
+/** type is the type conversion, type 2 is the orginal type, val2 is the val being converted*/
+unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno);
+
+
+
+/** Data structures */
+
+struct symbolTableRow{
+    string name;
+    string type;
+    unionTypes value;
+    int offset;
+
+    symbolTableRow(string name, string type, unionTypes value, int offset) : name(name), type(type), value(value), offset(offset) {};
+};
+
+struct symbolTable {
+    vector<symbolTableRow> table;
+    string context;
+
+    symbolTable(){};
+    symbolTable(string context) : context(context) {};
+};
+
+void addSymbolTableRow(string name, string type, unionTypes value);
+
+void initGlobalDataStructures();
 
 bool checkSymbolTableForSymbol(string symbolName);
 
 string getSymbolType(string symbolName);
 
+unionTypes giveTrashValue(string type);
 
 void addSymbolTableRow(string name, string type);
 

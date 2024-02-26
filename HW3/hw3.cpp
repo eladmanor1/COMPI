@@ -10,7 +10,7 @@
 using namespace std;
 using namespace output;
 
-#define MAX_BYTE 255
+
 
 vector<symbolTable> symbolTablesStack;
 stack<int> offsetStack;
@@ -21,7 +21,7 @@ bool checkSymbolTableForSymbol(string symbolName){
     }
 
     for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable){
+        for(auto& currRow : currSymbolTable.table){
             if(currRow.name == symbolName){
                 return true;
             }
@@ -31,7 +31,7 @@ bool checkSymbolTableForSymbol(string symbolName){
 }
 
 
-void addSymbolTableRow(string name, string type){
+void addSymbolTableRow(string name, string type, unionTypes value){
     if(symbolTablesStack.empty()){
         initGlobalDataStructures();
     }
@@ -39,9 +39,9 @@ void addSymbolTableRow(string name, string type){
     int offset = offsetStack.top();
     offsetStack.top() += 1;
 
-    symbolTableRow rowToAdd(name, type, offset);
+    symbolTableRow rowToAdd(name, type, value, offset);
 
-    symbolTablesStack.back().push_back(rowToAdd);
+    symbolTablesStack.back().table.push_back(rowToAdd);
 }
 
 
@@ -100,14 +100,23 @@ callType* creatCallObj(string func_name, string type, int lineno){
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.push_back(symbolTableRow("print", "void", -1));
-    tempTable.push_back(symbolTableRow("printi", "void", -1));
-    tempTable.push_back(symbolTableRow("readi", "int", -1));
+    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), -1));
+    tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
 
 void initOffsetStack(){
     offsetStack.push(0);
+}
+
+void addSymbolTable(string context){
+    symbolTable tempTable(context);
+    int tempValue = offsetStack.top();
+
+    symbolTablesStack.push_back(tempTable);
+    offsetStack.push(tempValue);
 }
 
 void initGlobalDataStructures(){
@@ -121,7 +130,7 @@ string getSymbolType(string symbolName){
     }
 
     for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable){
+        for(auto& currRow : currSymbolTable.table){
             if(currRow.name == symbolName){
                 return currRow.type;
             }
@@ -162,3 +171,38 @@ expType* createBinExp(expType* Aexp , binType* Op , expType* Bexp){
     }
 
 }
+
+unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
+    if(type1 == "int" && type2 == "int"){
+        return unionTypes(val2.intValue);
+    }
+    else if(type1 == "int" && type2 == "byte"){
+        return unionTypes((int)val2.byteValue);
+    }
+    else if(type1 == "byte" && type2 == "int"){
+        byte temp = (byte)(val2.intValue);
+        return unionTypes(temp);
+    }
+    /** byte and byte */
+    else{
+        return unionTypes(val2.byteValue);
+    }
+}
+
+
+unionTypes giveTrashValue(string type){
+    if (type == "string"){
+        return unionTypes("");
+    }
+    else if(type == "bool"){
+        return unionTypes(false);
+    }
+    else if(type == "byte"){
+        byte meow = (byte)0;
+        return unionTypes(meow);
+    }
+    else{
+        return unionTypes(0);
+    }
+}
+
