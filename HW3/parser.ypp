@@ -126,20 +126,20 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
 
-                | IF LPAREN Exp RPAREN Statement                    {
+                | IF LPAREN checkIfBool RPAREN Statement                    {
 
                                                                     popScope();
                                                                     $$ = new statementType("meow");
                                                                     }
 
-                | IF LPAREN Exp RPAREN Statement ELSE Statement     {
+                | IF LPAREN checkIfBool RPAREN Statement ELSE Statement     {
                                                                     if($3->type != "bool"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     }
 
-                | WHILE LPAREN Exp RPAREN Statement                 {
+                | WHILE LPAREN checkIfBool RPAREN Statement                 {
                                                                     if($3->type != "bool"){
                                                                     errorMismatch(yylineno);
                                                                     exit(0);}
