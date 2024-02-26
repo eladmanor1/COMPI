@@ -41,7 +41,7 @@ void addSymbolTableRow(string name, string type, unionTypes value){
 
     symbolTableRow rowToAdd(name, type, value, offset);
 
-    symbolTablesStack.back().push_back(rowToAdd);
+    symbolTablesStack.back().table.push_back(rowToAdd);
 }
 
 
@@ -100,9 +100,9 @@ callType* creatCallObj(string func_name, string type, int lineno){
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), -1));
-    tempTable.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), -1));
-    tempTable.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), -1));
     tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
