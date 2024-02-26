@@ -38,7 +38,7 @@
 %type <call_type> Call
 
 %type <exp_type> Exp
-%left <exp_type> checkIfBool
+%type <exp_type> checkIfBool
 
 
 %token <int_type> INT
@@ -60,11 +60,6 @@
 
 %nonassoc <loser_type> TRUE FALSE
 %nonassoc <string_type> STRING
-
-
-
-
-
 
 
 %right ASSIGN
@@ -131,7 +126,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | Call SC                                           {printProductionRule(8);}
                 | RETURN SC                                         {printProductionRule(9);}
 
-                | IF LPAREN checkIfBool RPAREN {createScope("if");} Statement                    {
+                | IF LPAREN Exp RPAREN {createScope("if");} Statement                    {
 
                                                                     popScope();
                                                                     $$ = new statementType("meow");
