@@ -276,16 +276,14 @@ void popScope(){
 
 
 bool checkIfInsideWhileBlock(){
-    for(auto & currTable : symbolTablesStack){
-        bool isFunc = checkIfFunc(currRow.name);
-        if(!isFunc){
-            printID(currRow.name, currRow.offset, currRow.type);
-        }
-        else{
-            string funcArgType = getFuncArgType(currRow.name);
-            printID(currRow.name, currRow.offset, makeFunctionType(funcArgType, currRow.type));
+
+    /** going in reverse order over the symboltable stack, so we get the most recent occurence. I don't think it really matters in this case, but still, it's more correct*/
+    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend();: ++currSymbolTable){
+        if(currSymbolTable->context == "while"){
+            return true;
         }
     }
+    return false;
 }
 
 

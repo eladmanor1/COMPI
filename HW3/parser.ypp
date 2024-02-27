@@ -153,7 +153,7 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope()
                 | CONTINUE SC                                       {if(!checkIfInsideWhileBlock()){
                                                                         errorUnexpectedContinue(yylineo);
                                                                         exit(0);
-                                                                    }
+                                                                    };
 
 
 Call:           ID LPAREN Exp RPAREN                                {callType* callobj = creatCallObj($1->name, $3->type, yylineno);
