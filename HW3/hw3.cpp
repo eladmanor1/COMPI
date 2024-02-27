@@ -13,8 +13,9 @@ using namespace output;
 
 
 vector<symbolTable> symbolTablesStack;
-static int dummy = initGlobalDataStructures();
 stack<int> offsetStack;
+int dummy = initGlobalDataStructures();
+
 
 bool checkSymbolTableForSymbol(string symbolName){
     if(symbolTablesStack.empty()){
