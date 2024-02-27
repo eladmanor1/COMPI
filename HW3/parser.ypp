@@ -132,7 +132,7 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                                                                     $$ = new statementType("meow");
                                                                     }
 
-                | IF LPAREN checkIfBool RPAREN {createScope("if");} Statement ELSE Statement     {
+                | IF LPAREN checkIfBool RPAREN {createScope("if");} Statement ELSE {popScope(); createScope("else");} Statement     {
                                                                     if($3->type != "bool"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
