@@ -147,12 +147,12 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope()
 
 
                 | BREAK SC                                          {if(!checkIfInsideWhileBlock()){
-                                                                        errorUnexpectedBreak(yylineo);
+                                                                        errorUnexpectedBreak(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     }
                 | CONTINUE SC                                       {if(!checkIfInsideWhileBlock()){
-                                                                        errorUnexpectedContinue(yylineo);
+                                                                        errorUnexpectedContinue(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     };
