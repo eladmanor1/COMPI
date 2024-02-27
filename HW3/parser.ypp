@@ -79,7 +79,7 @@
 
 %%
 
-Program:        Statements                                          {printProductionRule(1);};
+Program:        Statements                                          {popScope();};
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
 Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope();
