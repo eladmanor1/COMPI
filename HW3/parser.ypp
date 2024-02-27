@@ -154,6 +154,7 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope()
                 | CONTINUE SC                                       {if(!checkIfInsideWhileBlock()){
                                                                         errorUnexpectedContinue(yylineo);
                                                                         exit(0);
+                                                                    }
                                                                     };
 
 
