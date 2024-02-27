@@ -154,8 +154,6 @@ struct binopType{
     binopType(string name) : name(name) {};
 };
 
-void initGlobalDataStructures();
-
 
 
 
