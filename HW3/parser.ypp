@@ -82,7 +82,8 @@
 Program:        Statements                                          {printProductionRule(1);};
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
-Statement:      LBRACE Statements RBRACE                            {printProductionRule(4);}
+Statement:      LBRACE {createScope("block);} Statements RBRACE     {popScope();
+                                                                    $$ = new statementType("meow-meow");}
 
 
                 | Type ID SC                                        {printf("Statement -> Type ID SC\n");
@@ -129,20 +130,17 @@ Statement:      LBRACE Statements RBRACE                            {printProduc
                 | IF LPAREN checkIfBool RPAREN createIfScope Statement                    {
 
                                                                     popScope();
-                                                                    $$ = new statementType("meow");
+                                                                    $$ = new statementType("meow-regular if");
                                                                     }
 
                 | IF LPAREN checkIfBool RPAREN createIfScope Statement ELSE {popScope(); createScope("else");} Statement     {
-                                                                    if($3->type != "bool"){
-                                                                        errorMismatch(yylineno);
-                                                                        exit(0);
-                                                                    }
+                                                                    popScope();
+                                                                    $$ = new statementType("meow- if else");
                                                                     }
 
                 | WHILE LPAREN checkIfBool RPAREN createWhileScope Statement                 {
-                                                                    if($3->type != "bool"){
-                                                                    errorMismatch(yylineno);
-                                                                    exit(0);}
+                                                                    popScope();
+                                                                    $$ = new statementType("meow- if else");
                                                                     }
 
 
