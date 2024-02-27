@@ -134,7 +134,7 @@ string getSymbolType(string symbolName){
     }
 
     /** going in reverse order over the symboltable stack, so we get the most recent occurence */
-    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend();: ++currSymbolTable){
+    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend(); ++currSymbolTable){
         for(auto& currRow : currSymbolTable->table){
             if(currRow.name == symbolName){
                 return currRow.type;
@@ -278,7 +278,7 @@ void popScope(){
 bool checkIfInsideWhileBlock(){
 
     /** going in reverse order over the symboltable stack, so we get the most recent occurence. I don't think it really matters in this case, but still, it's more correct*/
-    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend();: ++currSymbolTable){
+    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend(); ++currSymbolTable){
         if(currSymbolTable->context == "while"){
             return true;
         }
