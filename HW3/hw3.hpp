@@ -137,7 +137,7 @@ struct symbolTable {
 
 void addSymbolTableRow(string name, string type, unionTypes value);
 
-void initGlobalDataStructures();
+int initGlobalDataStructures();
 
 bool checkSymbolTableForSymbol(string symbolName);
 

@@ -13,6 +13,7 @@ using namespace output;
 
 
 vector<symbolTable> symbolTablesStack;
+static int dummy = initGlobalDataStructures();
 stack<int> offsetStack;
 
 bool checkSymbolTableForSymbol(string symbolName){
@@ -33,7 +34,7 @@ bool checkSymbolTableForSymbol(string symbolName){
 
 void addSymbolTableRow(string name, string type, unionTypes value){
     if(symbolTablesStack.empty()){
-        initGlobalDataStructures();
+        printf("ERROR - symbolTableStack is empty!");
     }
 
     int offset = offsetStack.top();
@@ -119,9 +120,10 @@ void addSymbolTable(string context){
     offsetStack.push(tempValue);
 }
 
-void initGlobalDataStructures(){
+int initGlobalDataStructures(){
     initSymbolTablesStack();
     initOffsetStack();
+    return 0;
 }
 
 string getSymbolType(string symbolName){
