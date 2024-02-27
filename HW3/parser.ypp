@@ -82,7 +82,7 @@
 Program:        Statements                                          {printProductionRule(1);};
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
-Statement:      LBRACE {createScope("block);} Statements RBRACE     {popScope();
+Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope();
                                                                     $$ = new statementType("meow-meow");}
 
 
