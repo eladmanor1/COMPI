@@ -102,9 +102,9 @@ callType* creatCallObj(string func_name, string type, int lineno){
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), -1));
-    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), -1));
-    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), -1));
+    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), 0));
     tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
@@ -133,8 +133,9 @@ string getSymbolType(string symbolName){
         printf("SHITTTTT\n");
     }
 
-    for(auto& currSymbolTable : symbolTablesStack){
-        for(auto& currRow : currSymbolTable.table){
+    /** going in reverse order over the symboltable stack, so we get the most recent occurence */
+    for(auto currSymbolTable = symbolTablesStack.rbegin(); currSymbolTable != symbolTablesStack.rend();: ++currSymbolTable){
+        for(auto& currRow : currSymbolTable->table){
             if(currRow.name == symbolName){
                 return currRow.type;
             }
@@ -273,5 +274,18 @@ void popScope(){
     offsetStack.pop();
 }
 
+
+bool checkIfInsideWhileBlock(){
+    for(auto & currTable : symbolTablesStack){
+        bool isFunc = checkIfFunc(currRow.name);
+        if(!isFunc){
+            printID(currRow.name, currRow.offset, currRow.type);
+        }
+        else{
+            string funcArgType = getFuncArgType(currRow.name);
+            printID(currRow.name, currRow.offset, makeFunctionType(funcArgType, currRow.type));
+        }
+    }
+}
 
 

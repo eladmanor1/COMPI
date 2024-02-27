@@ -172,5 +172,7 @@ void createScope(string context);
 
 void popScope();
 
+bool checkIfInsideWhileBlock();
+
 
 #endif //HW3_OUTPUT_HPP_HW3_H
