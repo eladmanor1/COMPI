@@ -173,7 +173,7 @@ Type:           INT                                                 {$$ = new ty
                 | BYTE                                              {$$ = new typeType("byte");}
                 | BOOL                                              {$$ = new typeType("bool");};
 Exp:            LPAREN Exp RPAREN                                   {$$ = new expType($2->type,$2->value,$2->is_var, $2->name);}
-                | Exp ADD_SUB Exp                                   { if(compareType($1->type,$3->type) && isNumber($1->type)){
+                | Exp ADD_SUB Exp                                   { if(isNumber($1->type) && isNumber($3->type)){
                                                                                $$ = createBinExp($1 , $2 , $3);
                                                                       }
                                                                       else{
