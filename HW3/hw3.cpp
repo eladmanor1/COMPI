@@ -150,12 +150,12 @@ bool isNumber(string type){
     return false;
 }
 //
-void  checkForOversize(int res, int lineno){
-    if (res >= MAX_BYTE){
-        errorByteTooLarge(res,lineno);
-        exit(0);
-    }
-}
+//void  checkForOversize(int res, int lineno){
+//    if (res >= MAX_BYTE){
+//        errorByteTooLarge(res,lineno);
+//        exit(0);
+//    }
+//}
 
 //int calculatedBinopResInt(int a , string op , int b){
 //    if(op == "+")
@@ -184,13 +184,17 @@ void  checkForOversize(int res, int lineno){
 
 
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
+    //Here we already knows that the 2 exps are numbers!
+    //TODO: add here some value calculation and pass it on!
+
+        strint type;
         if(Aexp->type == "int" || Bexp->type == "int"){
-            return new expType("int","",false,"");
+            type = "int";
         }
         else{
-            return new expType("byte","",false,"");
+            type = "byte";
         }
-        return nullptr;
+        return new expType(type,"",false,"");
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
