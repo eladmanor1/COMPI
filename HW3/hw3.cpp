@@ -166,24 +166,24 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         if (Op->name == "+") {
 //            res_int = Aexp->value.intValue + Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
-            unionTypes  res = unionTypes(Avalue+Bvalue);
+            unionTypes  res = unionTypes(Aexp->value+Bexp->value);
 
         }
         if (Op->name == "-") {
 //            res_int = Aexp->value.intValue - Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
-            unionTypes res = unionTypes(Avalue-Bvalue);
+            unionTypes  res = unionTypes(Aexp->value-Bexp->value);
         }
         if (Op->name == "*") {
 //            res_int = Aexp->value.intValue * Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
-            unionTypes res = unionTypes(Avalue*Bvalue);
+            unionTypes  res = unionTypes(Aexp->value*Bexp->value);
 
         }
         if (Op->name == "/") {
 //            res_int = Aexp->value.intValue / Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
-            unionTypes res = unionTypes(Avalue/Bvalue);
+            unionTypes  res = unionTypes(Aexp->value/Bexp->value);
 
         }
         if(Aexp->type == "int" || Bexp->type == "int"){
