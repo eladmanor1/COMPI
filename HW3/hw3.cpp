@@ -157,39 +157,40 @@ bool isNumber(string type){
 //    }
 //}
 
+int calculatedBinopResInt(int a , string op , int b){
+    if(op == "+")
+        return a+b;
+    if(op == "-")
+        return a-b;
+    if(op == "*")
+        return a*b;
+    if(op == "/")
+        return a/b;
+
+    return -1;
+}
+
+Byte calculatedBinopResByte(byte a , string op , byte b){
+    if(op == "+")
+        return a+b;
+    if(op == "-")
+        return a-b;
+    if(op == "*")
+        return a*b;
+    if(op == "/")
+        return a/b;
+
+}
+
 
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
-        int res_int;
-        byte res_byte;
-        unionTypes Avalue = unionTypes(Aexp->value);
-        unionTypes Bvalue = unionTypes(Bexp->value);
-        if (Op->name == "+") {
-//            res_int = Aexp->value.intValue + Bexp->value.intValue;
-//            res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
-            unionTypes  res = unionTypes(Aexp->value+Bexp->value);
-
-        }
-        if (Op->name == "-") {
-//            res_int = Aexp->value.intValue - Bexp->value.intValue;
-//            res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
-            unionTypes  res = unionTypes(Aexp->value-Bexp->value);
-        }
-        if (Op->name == "*") {
-//            res_int = Aexp->value.intValue * Bexp->value.intValue;
-//            res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
-            unionTypes  res = unionTypes(Aexp->value*Bexp->value);
-
-        }
-        if (Op->name == "/") {
-//            res_int = Aexp->value.intValue / Bexp->value.intValue;
-//            res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
-            unionTypes  res = unionTypes(Aexp->value/Bexp->value);
-
-        }
         if(Aexp->type == "int" || Bexp->type == "int"){
-            return (new expType("int",res.intValue,false,""));
-        } else {
-            return (new expType("byte",res.byteValue,false,""));
+            int res = calculatedBinopResInt((int)Aexp->value , Op->name ,(int)Bexp->value );
+            return (new expType("int",res,false,""));
+        }
+        else{
+            byte res = calculatedBinopResByte(Aexp->value , Op->name , Bexp->value);
+            return (new expType("byte",res,false,""));
         }
         return nullptr;
 }
