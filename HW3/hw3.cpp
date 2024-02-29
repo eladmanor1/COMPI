@@ -194,7 +194,8 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         else{
             type = "byte";
         }
-        return new expType(type,"",false,"");
+        unionTypes trashvalue = giveTrashValue(type);
+        return new expType(type,trashvalue,false,"");
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
