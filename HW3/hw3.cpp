@@ -187,7 +187,7 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //Here we already knows that the 2 exps are numbers!
     //TODO: add here some value calculation and pass it on!
 
-        strint type;
+        string type;
         if(Aexp->type == "int" || Bexp->type == "int"){
             type = "int";
         }
