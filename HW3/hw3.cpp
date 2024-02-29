@@ -161,7 +161,7 @@ bool isNumber(string type){
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         int res_int;
         byte res_byte;
-
+        unionTypes Avalue ,Bvalue;
         if(Aexp->type == "int"){
             Avalue =  Aexp->value.intValue
         }
