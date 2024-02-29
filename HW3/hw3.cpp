@@ -185,11 +185,11 @@ bool isNumber(string type){
 
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         if(Aexp->type == "int" || Bexp->type == "int"){
-            int res = calculatedBinopResInt(Aexp->value , Op->name ,Bexp->value , "int");
+           // int res = calculatedBinopResInt(Aexp->value , Op->name ,Bexp->value , "int");
             return (new expType("int","",false,""));
         }
         else{
-            byte res = calculatedBinopResByte(Aexp->value , Op->name , Bexp->value);
+            //byte res = calculatedBinopResByte(Aexp->value , Op->name , Bexp->value);
             return (new expType("byte","",false,""));
         }
         return nullptr;
