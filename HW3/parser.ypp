@@ -181,7 +181,7 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                          exit(0);
                                                                       }
                                                                      }
-                | Exp MUL_DIV Exp                                   { if(compareType($1->type,$3->type) && isNumber($1->type)){
+                | Exp MUL_DIV Exp                                   { if(isNumber($1->type) && isNumber($3->type)){
                                                                                $$ = createBinExp($1 , $2 , $3);
                                                                         }
                                                                       else{

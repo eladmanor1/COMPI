@@ -161,41 +161,31 @@ bool isNumber(string type){
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
         int res_int;
         byte res_byte;
-        unionTypes Avalue ,Bvalue;
-        if(Aexp->type == "int"){
-            Avalue =  Aexp->value.intValue
+        Avalue = unionTypes(Aexp->value);
+        Bvalue = unionTypes(Bexp->value);
         }
-        else {
-            Avalue =  Aexp->value.byteValue
-        }
-
-        if(Bexp->type == "int"){
-            Bvalue = Bexp->value.intValue
-        }
-        else {
-            Bvalue =  Bexp->value.byteValue
-        }
-        unionTypes res;
-
         if (Op->name == "+") {
 //            res_int = Aexp->value.intValue + Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) + static_cast<int>(Bexp->value.byteValue));
-              res = unionTypes(Avalue+Bvalue)
+            res = unionTypes(Avalue+Bvalue);
+
         }
         if (Op->name == "-") {
 //            res_int = Aexp->value.intValue - Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) - static_cast<int>(Bexp->value.byteValue));
-            res = unionTypes(Avalue-Bvalue)
+            res = unionTypes(Avalue-Bvalue);
         }
         if (Op->name == "*") {
 //            res_int = Aexp->value.intValue * Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) * static_cast<int>(Bexp->value.byteValue));
-            res = unionTypes(Avalue*Bvalue)
+            res = unionTypes(Avalue*Bvalue);
+
         }
         if (Op->name == "/") {
 //            res_int = Aexp->value.intValue / Bexp->value.intValue;
 //            res_byte = byte(static_cast<int>(Aexp->value.byteValue) / static_cast<int>(Bexp->value.byteValue));
-            res = unionTypes(Avalue/Bvalue)
+            res = unionTypes(Avalue/Bvalue);
+
         }
         if(Aexp->type == "int" || Bexp->type == "int"){
             return (new expType("int",res.intValue,false,""));
