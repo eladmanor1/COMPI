@@ -50,17 +50,17 @@ void addSymbolTableRow(string name, string type, unionTypes value){
 
 
 bool compareType(string type1, string type2){
-    if (type1 == "string"){
-        return (type2 == "string");
+    if (type1 == "STRING"){
+        return (type2 == "STRING");
     }
-    else if(type1 == "bool") {
-        return (type2 == "bool");
+    else if(type1 == "BOOL") {
+        return (type2 == "BOOL");
     }
-    else if(type1 == "int") {
-        return (type2 == "int");
+    else if(type1 == "INT") {
+        return (type2 == "INT");
     }
-    else if(type1 == "byte") {
-        return (type2 == "byte");
+    else if(type1 == "BYTE") {
+        return (type2 == "BYTE");
     }
     else{
         printf("Something has gone terribly wrong!\n");
@@ -78,33 +78,33 @@ callType* creatCallObj(string func_name, string type, int lineno){
         return nullptr;
     if(func_name=="print") {
         if (type != "string"){
-            errorPrototypeMismatch(lineno, func_name, "string");
+            errorPrototypeMismatch(lineno, func_name, "STRING");
             exit(0);
         }
-        return (new callType("void", func_name));
+        return (new callType("VOID", func_name));
     }
     if(func_name=="printi") {
-        if(type != "int") {
-            errorPrototypeMismatch(lineno, func_name, "int");
+        if(type != "INT") {
+            errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
-        return (new callType("void",func_name));
+        return (new callType("VOID",func_name));
     }
     if(func_name=="readi") {
-        if(type != "int") {
-            errorPrototypeMismatch(lineno, func_name, "int");
+        if(type != "INT") {
+            errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
-        return (new callType("int",func_name));
+        return (new callType("INT",func_name));
     }
     return nullptr;
 }
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), 0));
-    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), 0));
-    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("print", "VOID", unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("printi", "VOID",unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("readi", "INT",unionTypes((int*)nullptr), 0));
     tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
@@ -145,7 +145,7 @@ string getSymbolType(string symbolName){
 }
 
 bool isNumber(string type){
-    if(type == "byte" || type == "int")
+    if(type == "BYTE" || type == "INT")
         return true;
     return false;
 }
@@ -157,55 +157,30 @@ bool isNumber(string type){
 //    }
 //}
 
-//int calculatedBinopResInt(int a , string op , int b){
-//    if(op == "+")
-//        return a+b;
-//    if(op == "-")
-//        return a-b;
-//    if(op == "*")
-//        return a*b;
-//    if(op == "/")
-//        return a/b;
-//
-//    return -1;
-//}
-//
-//unionTypes calculatedBinopRes(unionTypes a , string op , unionTypes b , string type){
-//    if(op == "+")
-//        return a+b;
-//    if(op == "-")
-//        return a-b;
-//    if(op == "*")
-//        return a*b;
-//    if(op == "/")
-//        return a/b;
-//
-//}
-
 
 expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //Here we already knows that the 2 exps are numbers!
     //TODO: add here some value calculation and pass it on!
 
         string type;
-        if(Aexp->type == "int" || Bexp->type == "int"){
-            type = "int";
+        if(Aexp->type == "INT" || Bexp->type == "INT"){
+            type = "INT";
         }
         else{
-            type = "byte";
+            type = "BYTE";
         }
         unionTypes trashvalue = giveTrashValue(type);
         return new expType(type,trashvalue,false,"");
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
-    if(type1 == "int" && type2 == "int"){
+    if(type1 == "INT" && type2 == "INT"){
         return unionTypes(val2.intValue);
     }
-    else if(type1 == "int" && type2 == "byte"){
+    else if(type1 == "INT" && type2 == "BYTE"){
         return unionTypes((int)val2.byteValue);
     }
-    else if(type1 == "byte" && type2 == "int"){
+    else if(type1 == "BYTE" && type2 == "INT"){
         byte temp = (byte)(val2.intValue);
         return unionTypes(temp);
     }
@@ -217,13 +192,13 @@ unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int li
 
 
 unionTypes giveTrashValue(string type){
-    if (type == "string"){
+    if (type == "STRING"){
         return unionTypes("");
     }
-    else if(type == "bool"){
+    else if(type == "BOOL"){
         return unionTypes(false);
     }
-    else if(type == "byte"){
+    else if(type == "BYTE"){
         byte meow = (byte)0;
         return unionTypes(meow);
     }
@@ -255,10 +230,10 @@ bool checkIfFunc(string name){
 
 string getFuncArgType(string name){
     if(name == "print"){
-        return "string";
+        return "STRING";
     }
     else if(name == "printi" || name == "readi"){
-        return "int";
+        return "INT";
     }
     else{
         return "ERRRORRR!!!!!!";
