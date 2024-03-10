@@ -99,6 +99,11 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
                                                                         errorDef(yylineno, $2->name);
                                                                         exit(0);
                                                                     }
+                                                                    if($1->name == "INT" && $4->type == "BYTE"){
+                                                                        addSymbolTableRow($2->name, $1->name, unionTypes($4->value));
+                                                                        $$ = new statementType($1->name);
+                                                                        return;
+                                                                    }
                                                                     if(!compareType($1->name, $4->type)){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
