@@ -78,33 +78,33 @@ callType* creatCallObj(string func_name, string type, int lineno){
         return nullptr;
     if(func_name=="print") {
         if (type != "string"){
-            errorPrototypeMismatch(lineno, func_name, "string");
+            errorPrototypeMismatch(lineno, func_name, "STRING");
             exit(0);
         }
-        return (new callType("void", func_name));
+        return (new callType("VOID", func_name));
     }
     if(func_name=="printi") {
-        if(type != "int") {
-            errorPrototypeMismatch(lineno, func_name, "int");
+        if(type != "INT") {
+            errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
-        return (new callType("void",func_name));
+        return (new callType("VOID",func_name));
     }
     if(func_name=="readi") {
-        if(type != "int") {
-            errorPrototypeMismatch(lineno, func_name, "int");
+        if(type != "INT") {
+            errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
-        return (new callType("int",func_name));
+        return (new callType("INT",func_name));
     }
     return nullptr;
 }
 
 void initSymbolTablesStack(){
     symbolTable tempTable;
-    tempTable.table.push_back(symbolTableRow("print", "void", unionTypes((int*)nullptr), 0));
-    tempTable.table.push_back(symbolTableRow("printi", "void",unionTypes((int*)nullptr), 0));
-    tempTable.table.push_back(symbolTableRow("readi", "int",unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("print", "VOID", unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("printi", "VOID",unionTypes((int*)nullptr), 0));
+    tempTable.table.push_back(symbolTableRow("readi", "INT",unionTypes((int*)nullptr), 0));
     tempTable.context = "global";
     symbolTablesStack.push_back(tempTable);
 }
@@ -163,11 +163,11 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
     //TODO: add here some value calculation and pass it on!
 
         string type;
-        if(Aexp->type == "int" || Bexp->type == "int"){
-            type = "int";
+        if(Aexp->type == "INT" || Bexp->type == "INT"){
+            type = "INT";
         }
         else{
-            type = "byte";
+            type = "BYTE";
         }
         unionTypes trashvalue = giveTrashValue(type);
         return new expType(type,trashvalue,false,"");
