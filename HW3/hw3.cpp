@@ -50,17 +50,17 @@ void addSymbolTableRow(string name, string type, unionTypes value){
 
 
 bool compareType(string type1, string type2){
-    if (type1 == "string"){
-        return (type2 == "string");
+    if (type1 == "STRING"){
+        return (type2 == "STRING");
     }
-    else if(type1 == "bool") {
-        return (type2 == "bool");
+    else if(type1 == "BOOL") {
+        return (type2 == "BOOL");
     }
-    else if(type1 == "int") {
-        return (type2 == "int");
+    else if(type1 == "INT") {
+        return (type2 == "INT");
     }
-    else if(type1 == "byte") {
-        return (type2 == "byte");
+    else if(type1 == "BYTE") {
+        return (type2 == "BYTE");
     }
     else{
         printf("Something has gone terribly wrong!\n");
@@ -145,7 +145,7 @@ string getSymbolType(string symbolName){
 }
 
 bool isNumber(string type){
-    if(type == "byte" || type == "int")
+    if(type == "BYTE" || type == "INT")
         return true;
     return false;
 }
@@ -155,31 +155,6 @@ bool isNumber(string type){
 //        errorByteTooLarge(res,lineno);
 //        exit(0);
 //    }
-//}
-
-//int calculatedBinopResInt(int a , string op , int b){
-//    if(op == "+")
-//        return a+b;
-//    if(op == "-")
-//        return a-b;
-//    if(op == "*")
-//        return a*b;
-//    if(op == "/")
-//        return a/b;
-//
-//    return -1;
-//}
-//
-//unionTypes calculatedBinopRes(unionTypes a , string op , unionTypes b , string type){
-//    if(op == "+")
-//        return a+b;
-//    if(op == "-")
-//        return a-b;
-//    if(op == "*")
-//        return a*b;
-//    if(op == "/")
-//        return a/b;
-//
 //}
 
 
@@ -199,13 +174,13 @@ expType* createBinExp(expType* Aexp , binopType* Op , expType* Bexp){
 }
 
 unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int lineno){
-    if(type1 == "int" && type2 == "int"){
+    if(type1 == "INT" && type2 == "INT"){
         return unionTypes(val2.intValue);
     }
-    else if(type1 == "int" && type2 == "byte"){
+    else if(type1 == "INT" && type2 == "BYTE"){
         return unionTypes((int)val2.byteValue);
     }
-    else if(type1 == "byte" && type2 == "int"){
+    else if(type1 == "BYTE" && type2 == "INT"){
         byte temp = (byte)(val2.intValue);
         return unionTypes(temp);
     }
@@ -217,13 +192,13 @@ unionTypes convertIntAndByte(string type1, string type2, unionTypes val2, int li
 
 
 unionTypes giveTrashValue(string type){
-    if (type == "string"){
+    if (type == "STRING"){
         return unionTypes("");
     }
-    else if(type == "bool"){
+    else if(type == "BOOL"){
         return unionTypes(false);
     }
-    else if(type == "byte"){
+    else if(type == "BYTE"){
         byte meow = (byte)0;
         return unionTypes(meow);
     }
@@ -255,10 +230,10 @@ bool checkIfFunc(string name){
 
 string getFuncArgType(string name){
     if(name == "print"){
-        return "string";
+        return "STRING";
     }
     else if(name == "printi" || name == "readi"){
-        return "int";
+        return "INT";
     }
     else{
         return "ERRRORRR!!!!!!";
