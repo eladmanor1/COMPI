@@ -84,14 +84,14 @@ callType* creatCallObj(string func_name, string type, int lineno){
         return (new callType("VOID", func_name));
     }
     if(func_name=="printi") {
-        if(type != "INT") {
+        if(type != "INT" && type != "BYTE") {
             errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
         return (new callType("VOID",func_name));
     }
     if(func_name=="readi") {
-        if(type != "INT") {
+        if(type != "INT" && type != "BYTE"){
             errorPrototypeMismatch(lineno, func_name, "INT");
             exit(0);
         }
