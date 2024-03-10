@@ -101,7 +101,6 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
                                                                     }
                                                                     if(!compareType($1->name, $4->type)  && !($1->name == "INT" && $4->type == "BYTE")){
                                                                         bool check = compareType($1->name, $4->type);
-                                                                        printf("i failed on line 103! and compare res is %b", &check);
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
@@ -241,7 +240,7 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                     }
                 | Exp EQUALITY Exp                                  {if (($1->type == "BYTE" || $1->type == "INT") && ($3->type == "BYTE" || $3->type == "INT")){
                                                                     // I am lying here. I am doing OR, when I should be doing RELATION... lier lier pants on fire
-                                                                    $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
+                                                                    $$ = new expType("BOOL", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
