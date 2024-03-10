@@ -246,7 +246,7 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                         exit(0);
                                                                     }
                                                                     }
-                | LPAREN Type RPAREN Exp                            {if($2->name != "BYTE" && $2->name != "BYTE"){
+                | LPAREN Type RPAREN Exp                            {if($2->name != "INT" && $2->name != "BYTE"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
