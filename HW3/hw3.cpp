@@ -77,7 +77,7 @@ callType* creatCallObj(string func_name, string type, int lineno){
     if(type == "")
         return nullptr;
     if(func_name=="print") {
-        if (type != "string"){
+        if (type != "STRING"){
             errorPrototypeMismatch(lineno, func_name, "STRING");
             exit(0);
         }
