@@ -124,8 +124,8 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
                                                                     }
 
 
-                | Call SC
-                | RETURN SC
+                | Call SC                                           {}
+                | RETURN SC                                         {}
 
                 | IF LPAREN checkIfBool RPAREN createIfScope Statement                    {
 
