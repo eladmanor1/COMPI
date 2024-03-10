@@ -99,7 +99,7 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
                                                                         errorDef(yylineno, $2->name);
                                                                         exit(0);
                                                                     }
-                                                                    if(!compareType($1->name, $4->type)  || !($1->name == "INT" && $4->type == "BYTE")){
+                                                                    if(!compareType($1->name, $4->type)  && !($1->name == "INT" && $4->type == "BYTE")){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
