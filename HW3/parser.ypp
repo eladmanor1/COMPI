@@ -79,7 +79,7 @@
 
 %%
 
-Program:        Statements                                          {popScope();};
+Program:        Statements                                          {};
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
 Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
@@ -275,6 +275,7 @@ int main()
 {
 //    yydebug = 1;
 	yyparse();
+	popScope();
 }
 
 int yyerror(const char * message)
