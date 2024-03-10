@@ -82,11 +82,11 @@
 Program:        Statements                                          {popScope();};
 Statements:     Statement                                           {printProductionRule(2);}
                 | Statements Statement                              {printProductionRule(3);};
-Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope();
+Statement:      LBRACE {createScope("block");} Statements RBRACE    {popScope();
                                                                     $$ = new statementType("meow-meow");}
 
 
-                | Type ID SC                                        {printf("Statement -> Type ID SC\n");
+                | Type ID SC                                        {
                                                                     if(checkSymbolTableForSymbol($2->name)){
                                                                         errorDef(yylineno, $2->name);
                                                                         exit(0);
@@ -113,7 +113,7 @@ Statement:      LBRACE {createScope("block");} Statements RBRACE     {popScope()
                                                                         //change value
                                                                         $$ = new statementType($1->name);
                                                                     }
-                                                                    else if(getSymbolType($1->name) == "int" && $3->type == "byte"){
+                                                                    else if(getSymbolType($1->name) == "INT" && $3->type == "BYTE"){
                                                                         //cast and then change value
                                                                         $$ = new statementType($1->name);
                                                                     }
@@ -169,9 +169,9 @@ Call:           ID LPAREN Exp RPAREN                                {callType* c
                                                                      };
 
 
-Type:           INT                                                 {$$ = new typeType("int");}
-                | BYTE                                              {$$ = new typeType("byte");}
-                | BOOL                                              {$$ = new typeType("bool");};
+Type:           INT                                                 {$$ = new typeType("INT");}
+                | BYTE                                              {$$ = new typeType("BYTE");}
+                | BOOL                                              {$$ = new typeType("BOOL");};
 Exp:            LPAREN Exp RPAREN                                   {$$ = new expType($2->type,$2->value,$2->is_var, $2->name);}
                 | Exp ADD_SUB Exp                                   { if(isNumber($1->type) && isNumber($3->type)){
                                                                                $$ = createBinExp($1 , $2 , $3);
@@ -204,40 +204,40 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                         errorByteTooLarge(yylineno, to_string($1->value));
                                                                         exit(0);
                                                                     }
-                                                                    $$ = new expType("byte", unionTypes((byte)$1->value), false, "");}
+                                                                    $$ = new expType("BYTE", unionTypes((byte)$1->value), false, "");}
 
                 | STRING                                            {$$ = new expType($1->type, unionTypes(new string($1->value)), false, "");}
-                | TRUE                                              {$$ = new expType("bool", unionTypes(true), false, "");}
-                | FALSE                                             {$$ = new expType("bool", unionTypes(false), false, "");}
-                | NOT Exp                                           {if(!compareType("bool", $2->type)){
+                | TRUE                                              {$$ = new expType("BOOL", unionTypes(true), false, "");}
+                | FALSE                                             {$$ = new expType("BOOL", unionTypes(false), false, "");}
+                | NOT Exp                                           {if(!compareType("BOOL", $2->type)){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
-                                                                    $$ = new expType("bool", unionTypes(!($2->value.boolValue)), false, "");}
-                | Exp AND Exp                                       {if(compareType($1->type, $3->type) && $1->type == "bool"){
-                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue && $3->value.boolValue)), false, "");
+                                                                    $$ = new expType("BOOL", unionTypes(!($2->value.boolValue)), false, "");}
+                | Exp AND Exp                                       {if(compareType($1->type, $3->type) && $1->type == "BOOL"){
+                                                                        $$ = new expType("BOOL", unionTypes(($1->value.boolValue && $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
-                | Exp OR Exp                                        {if(compareType($1->type, $3->type) && $1->type == "bool"){
-                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
+                | Exp OR Exp                                        {if(compareType($1->type, $3->type) && $1->type == "BOOL"){
+                                                                        $$ = new expType("BOOL", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
                                                                         exit(0);}
                                                                     }
-                | Exp RELATION Exp                                  {if (($1->type == "byte" || $1->type == "int") && ($3->type == "byte" || $3->type == "int")){
+                | Exp RELATION Exp                                  {if (($1->type == "BYTE" || $1->type == "INT") && ($3->type == "BYTE" || $3->type == "INT")){
                                                                         // I am lying here. I am doing OR, when I should be doing RELATION... lier lier pants on fire
-                                                                        $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
+                                                                        $$ = new expType("BOOL", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
                                                                     }
                                                                     else{
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     }
-                | Exp EQUALITY Exp                                  {if (($1->type == "byte" || $1->type == "int") && ($3->type == "byte" || $3->type == "int")){
+                | Exp EQUALITY Exp                                  {if (($1->type == "BYTE" || $1->type == "INT") && ($3->type == "BYTE" || $3->type == "INT")){
                                                                     // I am lying here. I am doing OR, when I should be doing RELATION... lier lier pants on fire
                                                                     $$ = new expType("bool", unionTypes(($1->value.boolValue || $3->value.boolValue)), false, "");
                                                                     }
@@ -246,17 +246,17 @@ Exp:            LPAREN Exp RPAREN                                   {$$ = new ex
                                                                         exit(0);
                                                                     }
                                                                     }
-                | LPAREN Type RPAREN Exp                            {if($2->name != "int" && $2->name != "byte"){
+                | LPAREN Type RPAREN Exp                            {if($2->name != "BYTE" && $2->name != "BYTE"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
-                                                                    if($4->type != "int" && $4->type != "byte"){
+                                                                    if($4->type != "INT" && $4->type != "BYTE"){
                                                                         errorMismatch(yylineno);
                                                                         exit(0);
                                                                     }
                                                                     $$ = new expType($2->name, convertIntAndByte($2->name, $4->name, $4->value, yylineno), $4->is_var, $4->name);
                 }
-checkIfBool:    Exp                                                 {if($1->type != "bool"){
+checkIfBool:    Exp                                                 {if($1->type != "BOOL"){
                                                                          errorMismatch(yylineno);
                                                                          exit(0);
                                                                     }

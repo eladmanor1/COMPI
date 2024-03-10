@@ -31,7 +31,7 @@ struct intType{
     string type;
 
     intType(int value) : value(value) {
-        type = "int";
+        type = "INT";
     };
 };
 
@@ -59,7 +59,7 @@ struct stringType{
     string value;
     const string type;
 
-    stringType(string value) : value(value), type("string") {};
+    stringType(string value) : value(value), type("STRING") {};
 
 };
 struct expType{
