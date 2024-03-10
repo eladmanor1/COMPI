@@ -225,7 +225,6 @@ bool checkIfFunc(string name){
     else{
         return false;
     }
-    return false;
 }
 
 string getFuncArgType(string name){

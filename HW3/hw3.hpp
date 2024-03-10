@@ -174,5 +174,7 @@ void popScope();
 
 bool checkIfInsideWhileBlock();
 
+bool checkIfFunc(string name);
+
 
 #endif //HW3_OUTPUT_HPP_HW3_H
